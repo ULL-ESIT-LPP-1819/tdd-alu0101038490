@@ -26,4 +26,10 @@ RSpec.describe Etiqueta do
 		expect(prueba.vitaminas).to eq(0.0)
 		expect(prueba.minerales).to eq(0.0)
 	end
+
+	it "calcula correctamente los datos" do
+		prueba = Etiqueta.new("Magdalena",21.7,2.6,54.9,29.0,4.8,1.15,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
+		expect(prueba.valorEnergeticoEnKJ).to eq(1829)
+		expect(prueba.valorEnergeticoEnKcal).to eq(437)
+	end
 end
