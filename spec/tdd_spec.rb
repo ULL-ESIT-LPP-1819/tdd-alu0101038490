@@ -2,10 +2,6 @@ RSpec.describe Tdd do
   it "has a version number" do
     expect(Tdd::VERSION).not_to be nil
   end
-
-  it "does something useful" do
-    expect(false).to eq(true)
-  end
 end
 
 RSpec.describe Etiqueta do
@@ -90,8 +86,8 @@ RSpec.describe Etiqueta do
 		it "calcula correctamente los valores energéticos" do
 			prueba = Etiqueta.new("Magdalena",21.7,2.6,54.9,29.0,4.8,1.15,0.0,0.0,0.0,0.0,0.0,0.0,0.0)	
 			prueba.dividirEnPorciones(16,60.0)
-			expect(prueba.valorEnergeticoEnKJ).to eq(1829)
-			expect(prueba.valorEnergeticoEnKcal).to eq(437)
+			expect(prueba.valorEnergeticoEnKJ).to eq([1406,844])
+			expect(prueba.valorEnergeticoEnKcal).to eq([336,202])
 		end
 
 
