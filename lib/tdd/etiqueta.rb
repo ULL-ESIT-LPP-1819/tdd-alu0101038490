@@ -1,6 +1,6 @@
 class Etiqueta 
 
-	attr_accessor :nombre, :grasas, :grasasSaturadas, :hidratosDeCarbono, 
+	attr_accessor :nombre, :grasas, :grasasMonoinsaturadas, :grasasSaturadas, :hidratosDeCarbono, 
 		:azucares, :proteinas, :sal, :grasasMonoinsaturadas,
 	       	:grasasPoliinsaturadas, :polialcoholes, :almidon, :fibraAlimentaria, 
 		:vitaminas, :minerales
@@ -34,6 +34,58 @@ class Etiqueta
 	def dividirEnPorciones (porciones, cantidadPorPorcion)
 		@porciones = porciones
 		@cantidadPorPorcion = cantidadPorPorcion
+	end
+
+	def grasasPorPorcion 
+		(@grasas * (@cantidadPorPorcion / 100)).round(2)
+	end
+
+	def grasasSaturadasPorPorcion 
+		(@grasasSaturadas * (@cantidadPorPorcion / 100)).round(2)
+	end
+	
+	def hidratosDeCarbonoPorPorcion 
+		(@hidratosDeCarbono * (@cantidadPorPorcion / 100)).round(2)
+	end
+
+	def azucaresPorPorcion 
+		(@azucares * (@cantidadPorPorcion / 100)).round(2)
+	end
+
+	def proteinasPorPorcion 
+		(@proteinas * (@cantidadPorPorcion / 100)).round(2)
+	end
+
+	def salPorPorcion 
+		(@sal * (@cantidadPorPorcion / 100)).round(2)
+	end
+
+	def grasasMonoinsaturadasPorPorcion 
+		(@grasasMonoinsaturadas * (@cantidadPorPorcion / 100)).round(2)
+	end
+
+	def grasasPoliinsaturadasPorPorcion 
+		(@grasasPoliinsaturadas * (@cantidadPorPorcion / 100)).round(2)
+	end
+
+	def polialcoholesPorPorcion 
+		(@polialcoholes * (@cantidadPorPorcion / 100)).round(2)
+	end
+
+	def almidonPorPorcion 
+		(@almidon * (@cantidadPorPorcion / 100)).round(2)
+	end
+
+	def fibraAlimentariaPorPorcion 
+		(@fibraAlimentaria * (@cantidadPorPorcion / 100)).round(2)
+	end
+
+	def vitaminasPorPorcion 
+		(@vitaminas * (@cantidadPorPorcion / 100)).round(2)
+	end
+
+	def mineralesPorPorcion 
+		(@minerales * (@cantidadPorPorcion / 100)).round(2)
 	end
 
 	def valorEnergeticoEnKJ
