@@ -115,6 +115,22 @@ RSpec.describe Etiqueta do
 			expect(prueba.fibraAlimentariaPorPorcion).to eq(0.0)
 			expect(prueba.vitaminasPorPorcion).to eq(0.0)
 			expect(prueba.minerales).to eq(0.0)
+
+			expect(prueba.to_s).to eq("\tPor 100g\tIR (por 100g)\tPor 60.0g\tIR(por 60.0g)\n" +
+					 "Valor energético:\t1406/336\t17%\t844/202\t10%\n" +
+					 "Grasas:\t21.7g\t31%\t13.02g\t19%\n" +
+					 "  Saturadas:\t2.6g\t13%\t1.56g\t8%\n" +
+					 "  Monoinsaturadas:\t0.0g\t-\t0.0g\t-\n" +
+					 "  Poliinsaturadas:\t0.0g\t-\t0.0g\t-\n" +
+					 "Hidratos:\t54.9g\t21%\t32.94\t13%\n" +
+					 "  Azucares:\t29.0g\t32%\t17.4g\t19%\n" +
+					 "  Polialcoholes:\t0.0g\t-\t0.0g\t-\n" +
+					 "  Almidón:\t0.0g\t-\t0.0g\t-\n" +
+					 "Fibra:\t0.0g\t-\t0.0g\t-\n" +
+					 "Proteinas:\t4.8g\t10%\t2.88g\t6%\n" +
+					 "Sal:\t1.15g\t19%\t0.69g\t12%\n" +
+					 "Vitaminas:\t0.0g\t-\t0.0g\t-\n" +
+					 "Minerales:\t0.0g\t-\t0.0g\t-\n")
 		end
 
 	end
