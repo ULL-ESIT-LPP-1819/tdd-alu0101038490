@@ -5,6 +5,8 @@ class Etiqueta
 	       	:grasasPoliinsaturadas, :polialcoholes, :almidon, :fibraAlimentaria, 
 		:vitaminas, :minerales
 
+	attr_reader :porciones, :cantidadPorPorcion
+
 	def initialize(nombre, grasas, grasasSaturadas, hidratosDeCarbono, 
                 azucares, proteinas, sal, grasasMonoinsaturadas, 
                 grasasPoliinsaturadas, polialcoholes, almidon, fibraAlimentaria, 
@@ -24,6 +26,11 @@ class Etiqueta
 		@fibraAlimentaria = fibraAlimentaria
 		@vitaminas = vitaminas
 		@minerales = minerales
+	end
+
+	def dividirEnPorciones (porciones, cantidadPorPorcion)
+		@porciones = porciones
+		@cantidadPorPorcion = cantidadPorPorcion
 	end
 
 	def valorEnergeticoEnKJ
