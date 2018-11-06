@@ -28,7 +28,7 @@ class Etiqueta
 		@minerales = minerales
 
 		@porciones = 1
-		@cantidadPorPorcion = 0.0
+		@cantidadPorPorcion = 100.0
 	end
 
 	def dividirEnPorciones (porciones, cantidadPorPorcion)
@@ -88,6 +88,7 @@ class Etiqueta
 		(@minerales * (@cantidadPorPorcion / 100)).round(2)
 	end
 
+	#Devuelve el valor energético respecto a los 100g y respecto a la cantidad por porción si las hay.
 	def valorEnergeticoEnKJ
 		valor = 0.0
 		valor += (37 * @grasas)
@@ -113,6 +114,7 @@ class Etiqueta
 		end
 	end
 
+	#Devuelve el porcentaje sobre los 100g y también sobre la cantidad por porción si las hay (igual que los siguientes métodos).
 	def porcentajeValorEnergetico
 		valor = valorEnergeticoEnKcal
 		if valor.class == Array
