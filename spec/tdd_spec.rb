@@ -27,9 +27,19 @@ RSpec.describe Etiqueta do
 		expect(prueba.minerales).to eq(0.0)
 	end
 
-	it "calcula correctamente los datos" do
+	it "calcula correctamente los valores energéticos" do
 		prueba = Etiqueta.new("Magdalena",21.7,2.6,54.9,29.0,4.8,1.15,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
 		expect(prueba.valorEnergeticoEnKJ).to eq(1829)
 		expect(prueba.valorEnergeticoEnKcal).to eq(437)
+	end
+
+	it "calcula correctamente los valores de la tabla" do 
+		expect(prueba.porcentajeValorEnergetico).to eq()
+                expect(prueba.porcentajeGrasas).to eq(31)
+                expect(prueba.porcentajeSaturadas).to eq(13)
+                expect(prueba.porcentajeHidratos).to eq(21)
+                expect(prueba.porcentajeAzucares).to eq(32)
+                expect(prueba.porcentajeProteinas).to eq(10)
+                expect(prueba.porcentajeSal).to eq(19)
 	end
 end
