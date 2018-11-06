@@ -177,21 +177,39 @@ class Etiqueta
 	end
 	
 	def to_s
-		"\tPor 100g\tIR (por 100g)\n" +
-                "Valor energético:\t#{valorEnergeticoEnKJ}/#{valorEnergeticoEnKcal}\t#{porcentajeValorEnergetico}%\n" +
-                "Grasas:\t#{@grasas}g\t#{porcentajeGrasas}%\n" +
-                "  Saturadas:\t#{@grasasSaturadas}g\t#{porcentajeSaturadas}%\n" +
-                "  Monoinsaturadas:\t#{@grasasMonoinsaturadas}g\t-\n" +
-                "  Poliinsaturadas:\t#{@grasasPoliinsaturadas}g\t-\n" +
-                "Hidratos:\t#{@hidratosDeCarbono}g\t#{porcentajeHidratos}%\n" +
-                "  Azucares:\t#{@azucares}g\t#{porcentajeAzucares}%\n" +
-                "  Polialcoholes:\t#{@polialcoholes}g\t-\n" +
-                "  Almidón:\t#{@almidon}g\t-\n" +
-                "Fibra:\t#{@fibraAlimentaria}g\t-\n" +
-                "Proteinas:\t#{@proteinas}g\t#{porcentajeProteinas}%\n" +
-                "Sal:\t#{@sal}g\t#{porcentajeSal}%\n" +
-                "Vitaminas:\t#{@vitaminas}g\t-\n" +
-                "Minerales:\t#{@minerales}g\t-\n"
+		if @porciones <= 1
+			"\tPor 100g\tIR (por 100g)\n" +
+                	"Valor energético:\t#{valorEnergeticoEnKJ}/#{valorEnergeticoEnKcal}\t#{porcentajeValorEnergetico}%\n" +
+                	"Grasas:\t#{@grasas}g\t#{porcentajeGrasas}%\n" +
+                	"  Saturadas:\t#{@grasasSaturadas}g\t#{porcentajeSaturadas}%\n" +
+                	"  Monoinsaturadas:\t#{@grasasMonoinsaturadas}g\t-\n" +
+                	"  Poliinsaturadas:\t#{@grasasPoliinsaturadas}g\t-\n" +
+                	"Hidratos:\t#{@hidratosDeCarbono}g\t#{porcentajeHidratos}%\n" +
+                	"  Azucares:\t#{@azucares}g\t#{porcentajeAzucares}%\n" +
+                	"  Polialcoholes:\t#{@polialcoholes}g\t-\n" +
+                	"  Almidón:\t#{@almidon}g\t-\n" +
+                	"Fibra:\t#{@fibraAlimentaria}g\t-\n" +
+                	"Proteinas:\t#{@proteinas}g\t#{porcentajeProteinas}%\n" +
+                	"Sal:\t#{@sal}g\t#{porcentajeSal}%\n" +
+                	"Vitaminas:\t#{@vitaminas}g\t-\n" +
+                	"Minerales:\t#{@minerales}g\t-\n"
+		else 
+			"\tPor 100g\tIR (por 100g)\tPor #{@cantidadPorPorcion}g\tIR(por #{@cantidadPorPorcion}g)\n" +
+                        "Valor energético:\t#{valorEnergeticoEnKJ[0]}/#{valorEnergeticoEnKcal[0]}\t#{porcentajeValorEnergetico[0]}%\t#{valorEnergeticoEnKJ[1]}/#{valorEnergeticoEnKcal[1]}\t#{porcentajeValorEnergetico[1]}%\n" +
+                        "Grasas:\t#{@grasas}g\t#{porcentajeGrasas[0]}%\t#{grasasPorPorcion}g\t#{porcentajeGrasas[1]}%\n" +
+                        "  Saturadas:\t#{@grasasSaturadas}g\t#{porcentajeSaturadas[0]}%\t#{grasasSaturadasPorPorcion}g\t#{porcentajeSaturadas[1]}%\n" +
+                        "  Monoinsaturadas:\t#{@grasasMonoinsaturadas}g\t-\t#{grasasMonoinsaturadasPorPorcion}g\t-\n" +
+                        "  Poliinsaturadas:\t#{@grasasPoliinsaturadas}g\t-\t#{grasasPoliinsaturadasPorPorcion}g\t-\n" +
+                        "Hidratos:\t#{@hidratosDeCarbono}g\t#{porcentajeHidratos[0]}%\t#{hidratosDeCarbonoPorPorcion}\t#{porcentajeHidratos[1]}%\n" +
+                        "  Azucares:\t#{@azucares}g\t#{porcentajeAzucares[0]}%\t#{azucaresPorPorcion}g\t#{porcentajeAzucares[1]}%\n" +
+                        "  Polialcoholes:\t#{@polialcoholes}g\t-\t#{polialcoholesPorPorcion}g\t-\n" +
+                        "  Almidón:\t#{@almidon}g\t-\t#{almidonPorPorcion}g\t-\n" +
+                        "Fibra:\t#{@fibraAlimentaria}g\t-\t#{fibraAlimentariaPorPorcion}g\t-\n" +
+                        "Proteinas:\t#{@proteinas}g\t#{porcentajeProteinas[0]}%\t#{proteinasPorPorcion}g\t#{porcentajeProteinas[1]}%\n" +
+                        "Sal:\t#{@sal}g\t#{porcentajeSal[0]}%\t#{salPorPorcion}g\t#{porcentajeSal[1]}%\n" +
+                        "Vitaminas:\t#{@vitaminas}g\t-\t#{@vitaminas}g\t-\n" +
+                        "Minerales:\t#{@minerales}g\t-\t#{@minerales}g\t-\n"
+		end
 	end
 
 end
