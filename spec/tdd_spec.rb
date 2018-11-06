@@ -102,6 +102,19 @@ RSpec.describe Etiqueta do
                 	expect(prueba.porcentajeProteinas).to eq([10,6])
                 	expect(prueba.porcentajeSal).to eq([19,12])
 
+			expect(prueba.grasasPorPorcion).to eq(13.02)
+			expect(prueba.grasasSaturadasPorPorcion).to eq(1.56)
+			expect(prueba.hidratosDeCarbonoPorPorcion).to eq(32.94)
+			expect(prueba.azucaresPorPorcion).to eq(17.4)
+			expect(prueba.proteinasPorPorcion).to eq(2.88)
+			expect(prueba.salPorPorcion).to eq(0.69)
+			expect(prueba.grasasMonoinsaturadasPorPorcion).to eq(0.0)
+			expect(prueba.grasasPoliinsaturadasPorPorcion).to eq(0.0)
+			expect(prueba.polialcoholesPorPorcion).to eq(0.0)
+			expect(prueba.almidonPorPorcion).to eq(0.0)
+			expect(prueba.fibraAlimentariaPorPorcion).to eq(0.0)
+			expect(prueba.vitaminasPorPorcion).to eq(0.0)
+			expect(prueba.minerales).to eq(0.0)
 		end
 
 	end
