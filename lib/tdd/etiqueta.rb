@@ -66,5 +66,23 @@ class Etiqueta
 	def porcentajeSal
 		((@sal / 6) * 100).round(0)
 	end
+	
+	def to_s
+		"\tPor 100g\tIR (por 100g)\n" +
+                "Valor energético:\t#{valorEnergeticoEnKJ}/#{valorEnergeticoEnKcal}\t??%\n" +
+                "Grasas:\t#{@grasas}g\t#{porcentajeGrasas}%\n" +
+                "  Saturadas:\t#{@grasasSaturadas}g\t#{porcentajeSaturadas}%\n" +
+                "  Monoinsaturadas:\t#{@grasasMonoinsaturadas}g\t-\n" +
+                "  Poliinsaturadas:\t#{@grasasPoliinsaturadas}g\t-\n" +
+                "Hidratos:\t#{@hidratosDeCarbono}g\t#{porcentajeHidratos}%\n" +
+                "  Azucares:\t#{@azucares}g\t#{porcentajeAzucares}%\n" +
+                "  Polialcoholes:\t#{@polialcoholes}g\t-\n" +
+                "  Almidón:\t#{@almidon}g\t-\n" +
+                "Fibra:\t#{@fibraAlimentaria}g\t-\n" +
+                "Proteinas:\t#{@proteinas}g\t#{porcentajeProteinas}%\n" +
+                "Sal:\t#{@sal}g\t#{porcentajeSal}%\n" +
+                "Vitaminas:\t#{@vitaminas}g\t-\n" +
+                "Minerales:\t#{@minerales}g\t-\n"
+	end
 
 end

@@ -49,10 +49,10 @@ RSpec.describe Etiqueta do
 					 "  Saturadas:\t2.6g\t13%\n" +
 					 "  Monoinsaturadas:\t0.0g\t-\n" +
 					 "  Poliinsaturadas:\t0.0g\t-\n" +
-					 "Hidratos:\t54.9g\t21\n" +
+					 "Hidratos:\t54.9g\t21%\n" +
 					 "  Azucares:\t29.0g\t32%\n" +
 					 "  Polialcoholes:\t0.0g\t-\n" +
-					 "  Almidón:\t21.7g\t-\n" +
+					 "  Almidón:\t0.0g\t-\n" +
 					 "Fibra:\t0.0g\t-\n" +
 					 "Proteinas:\t4.8g\t10%\n" +
 					 "Sal:\t1.15g\t19%\n" +
