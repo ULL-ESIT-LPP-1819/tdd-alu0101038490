@@ -34,7 +34,7 @@ RSpec.describe Etiqueta do
 
 		it "calcula correctamente los valores de la tabla" do 
 			prueba = Etiqueta.new("Magdalena",21.7,2.6,54.9,29.0,4.8,1.15,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
-			#expect(prueba.porcentajeValorEnergetico).to eq()
+			expect(prueba.porcentajeValorEnergetico).to eq(17)
                 	expect(prueba.porcentajeGrasas).to eq(31)
                 	expect(prueba.porcentajeSaturadas).to eq(13)
                 	expect(prueba.porcentajeHidratos).to eq(21)
@@ -94,7 +94,7 @@ RSpec.describe Etiqueta do
 		it "calcula correctamente los valores de la tabla" do 
 			prueba = Etiqueta.new("Magdalena",21.7,2.6,54.9,29.0,4.8,1.15,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
 			prueba.dividirEnPorciones(16,60.0)
-			#expect(prueba.porcentajeValorEnergetico).to eq()
+			expect(prueba.porcentajeValorEnergetico).to eq([17,10])
                 	expect(prueba.porcentajeGrasas).to eq([31,19])
                 	expect(prueba.porcentajeSaturadas).to eq([13,8])
                 	expect(prueba.porcentajeHidratos).to eq([21,13])

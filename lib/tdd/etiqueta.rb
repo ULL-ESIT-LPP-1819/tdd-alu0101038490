@@ -62,7 +62,12 @@ class Etiqueta
 	end
 
 	def porcentajeValorEnergetico
-		((valorEnergeticoEnKcal.to_f / 2000.0) * 100).round(0)
+		valor = valorEnergeticoEnKcal
+		if valor.class == Array
+			[((valor[0].to_f / 2000.0) * 100).round(0) , ((valor[1].to_f / 2000.0) * 100).round(0)]
+		else
+			((valor.to_f / 2000.0) * 100).round(0)
+		end
 	end
 
 	def porcentajeGrasas
