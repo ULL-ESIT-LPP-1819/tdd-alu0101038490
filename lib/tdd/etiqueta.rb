@@ -38,19 +38,22 @@ class Etiqueta
 
 	def valorEnergeticoEnKJ
 		valor = 0.0
-		valor += (27 * @grasas)
+		valor += (37 * @grasas)
 		valor += (8 * @fibraAlimentaria)
 		valor += (17 * @proteinas)
 		valor += (25 * @sal)
+		valor += (17 * @azucares)
+		valor += (17 * @almidon)
+		valor += (10 * @polialcoholes)
 		valor.round(0)
 	end
 
 	def valorEnergeticoEnKcal
-		valorEnergeticoEnKJ / 4.184
+		(valorEnergeticoEnKJ / 4.184).round(0)
 	end
 
 	def porcentajeValorEnergetico
-
+		((valorEnergeticoEnKcal.to_f / 2000.0) * 100).round(0)
 	end
 
 	def porcentajeGrasas
@@ -109,7 +112,7 @@ class Etiqueta
 	
 	def to_s
 		"\tPor 100g\tIR (por 100g)\n" +
-                "Valor energético:\t#{valorEnergeticoEnKJ}/#{valorEnergeticoEnKcal}\t??%\n" +
+                "Valor energético:\t#{valorEnergeticoEnKJ}/#{valorEnergeticoEnKcal}\t#{porcentajeValorEnergetico}%\n" +
                 "Grasas:\t#{@grasas}g\t#{porcentajeGrasas}%\n" +
                 "  Saturadas:\t#{@grasasSaturadas}g\t#{porcentajeSaturadas}%\n" +
                 "  Monoinsaturadas:\t#{@grasasMonoinsaturadas}g\t-\n" +
