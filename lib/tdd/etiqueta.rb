@@ -26,6 +26,9 @@ class Etiqueta
 		@fibraAlimentaria = fibraAlimentaria
 		@vitaminas = vitaminas
 		@minerales = minerales
+
+		@porciones = 1
+		@cantidadPorPorcion = 0.0
 	end
 
 	def dividirEnPorciones (porciones, cantidadPorPorcion)
@@ -51,27 +54,57 @@ class Etiqueta
 	end
 
 	def porcentajeGrasas
-		((@grasas / 70) * 100).round(0)
+		if @porciones > 1
+			gramosPorPorcion = @grasas * (@cantidadPorPorcion / 100)
+			[((@grasas / 70) * 100).round(0),((gramosPorPorcion / 70) * 100).round(0)]
+		else
+			((@grasas / 70) * 100).round(0)
+		end
 	end
 
 	def porcentajeSaturadas
-		((@grasasSaturadas / 20) * 100).round(0)
+		if @porciones > 1
+			gramosPorPorcion = @grasasSaturadas * (@cantidadPorPorcion / 100)
+			[((@grasasSaturadas / 20) * 100).round(0),((gramosPorPorcion / 20) * 100).round(0)]
+		else
+			((@grasasSaturadas / 20) * 100).round(0)
+		end
 	end
 
 	def porcentajeHidratos 
-		((@hidratosDeCarbono / 260) * 100).round(0)
+		if @porciones > 1
+			gramosPorPorcion = @hidratosDeCarbono * (@cantidadPorPorcion / 100)
+			[((@hidratosDeCarbono / 260) * 100).round(0),((gramosPorPorcion / 260) * 100).round(0)]
+		else
+			((@hidratosDeCarbono / 260) * 100).round(0)
+		end
 	end
 
 	def porcentajeAzucares
-		((@azucares / 90) * 100).round(0)
+		if @porciones > 1
+			gramosPorPorcion = @azucares * (@cantidadPorPorcion / 100)
+			[((@azucares / 90) * 100).round(0),((gramosPorPorcion / 90) * 100).round(0)]
+		else
+			((@azucares / 90) * 100).round(0)
+		end
 	end
 
 	def porcentajeProteinas
-		((@proteinas / 50) * 100).round(0)
+		if @porciones > 1
+			gramosPorPorcion = @proteinas * (@cantidadPorPorcion / 100)
+			[((@proteinas / 50) * 100).round(0),((gramosPorPorcion / 50) * 100).round(0)]
+		else
+			((@proteinas / 50) * 100).round(0)
+		end
 	end
 
 	def porcentajeSal
-		((@sal / 6) * 100).round(0)
+		if @porciones > 1
+			gramosPorPorcion = @sal * (@cantidadPorPorcion / 100)
+			[((@sal / 6) * 100).round(0),((gramosPorPorcion / 6) * 100).round(0)]
+		else
+			((@sal / 6) * 100).round(0)
+		end
 	end
 	
 	def to_s
