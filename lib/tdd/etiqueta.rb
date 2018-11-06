@@ -39,4 +39,32 @@ class Etiqueta
 		valorEnergeticoEnKJ / 4.184
 	end
 
+	def porcentajeValorEnergetico
+
+	end
+
+	def porcentajeGrasas
+		((@grasas / 70) * 100).round(0)
+	end
+
+	def porcentajeSaturadas
+		((@grasasSaturadas / 20) * 100).round(0)
+	end
+
+	def porcentajeHidratos 
+		((@hidratosDeCarbono / 260) * 100).round(0)
+	end
+
+	def porcentajeAzucares
+		((@azucares / 90) * 100).round(0)
+	end
+
+	def porcentajeProteinas
+		((@proteinas / 50) * 100).round(0)
+	end
+
+	def porcentajeSal
+		((@sal / 6) * 100).round(0)
+	end
+
 end

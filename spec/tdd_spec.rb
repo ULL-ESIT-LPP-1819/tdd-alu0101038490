@@ -34,12 +34,29 @@ RSpec.describe Etiqueta do
 	end
 
 	it "calcula correctamente los valores de la tabla" do 
-		expect(prueba.porcentajeValorEnergetico).to eq()
+		prueba = Etiqueta.new("Magdalena",21.7,2.6,54.9,29.0,4.8,1.15,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
+		#expect(prueba.porcentajeValorEnergetico).to eq()
                 expect(prueba.porcentajeGrasas).to eq(31)
                 expect(prueba.porcentajeSaturadas).to eq(13)
                 expect(prueba.porcentajeHidratos).to eq(21)
                 expect(prueba.porcentajeAzucares).to eq(32)
                 expect(prueba.porcentajeProteinas).to eq(10)
                 expect(prueba.porcentajeSal).to eq(19)
+
+		expect(prueba.to_s).to eq("\tPor 100g\tIR (por 100g)\n" +
+					 "Valor energético:\t??/??\t??%\n" +
+					 "Grasas:\t21.7g\t31%\n" +
+					 "  Saturadas:\t2.6g\t13%\n" +
+					 "  Monoinsaturadas:\t0.0g\t-\n" +
+					 "  Poliinsaturadas:\t0.0g\t-\n" +
+					 "Hidratos:\t54.9g\t21\n" +
+					 "  Azucares:\t29.0g\t32%\n" +
+					 "  Polialcoholes:\t0.0g\t-\n" +
+					 "  Almidón:\t21.7g\t-\n" +
+					 "Fibra:\t0.0g\t-\n" +
+					 "Proteinas:\t4.8g\t10%\n" +
+					 "Sal:\t1.15g\t19%\n" +
+					 "Vitaminas:\t0.0g\t-\n" +
+					 "Minerales:\t0.0g\t-\n")
 	end
 end
