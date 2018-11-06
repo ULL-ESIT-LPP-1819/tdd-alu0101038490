@@ -45,11 +45,20 @@ class Etiqueta
 		valor += (17 * @azucares)
 		valor += (17 * @almidon)
 		valor += (10 * @polialcoholes)
-		valor.round(0)
+		if @porciones > 1
+			[valor.round(0),(valor * (@cantidadPorPorcion / 100)).round(0)]
+		else
+			valor.round(0)
+		end	
 	end
 
 	def valorEnergeticoEnKcal
-		(valorEnergeticoEnKJ / 4.184).round(0)
+		valor = valorEnergeticoEnKJ
+		if valor.class == Array
+			[(valor[0] / 4.184).round(0) , (valor[1] / 4.184).round(0)]
+		else
+			(valor / 4.184).round(0)
+		end
 	end
 
 	def porcentajeValorEnergetico
