@@ -135,3 +135,11 @@ RSpec.describe Etiqueta do
 
 	end
 end
+
+RSpec.describe List do
+	
+	it "se inicializa correctamente" do
+		expect(List.new)
+	end
+
+end
