@@ -155,12 +155,24 @@ RSpec.describe List do
 		expect(nodo2.value).to eq(2)
 		expect(nodo2.next).to eq(4)
 		expect(nodo2.prev).to eq(nil)
-
+		
+		nodo3 = List::Node.new("Las cadenas también funcionan.")
+		expect(nodo3.value).to eq("Las cadenas también funcionan.")
+		expect(nodo3.prev).to eq(nil)
+		expect(nodo3.next).to eq(nil)
+		
 		lista.push_back(nodo)
+		lista.push_front(20)
 		lista.push_back(nodo2)
+		lista.push_front(nodo3)
 		lista.push_back(8)
 
 		iterator = lista.head
+		
+		expect(iterator.value).to eq("Las cadenas también funcionan.")
+		iterator = iterator.next
+		expect(iterator.value).to eq(20)
+		iterator = iterator.next
 		expect(iterator.value).to eq(1)
 		iterator = iterator.next
 		expect(iterator.value).to eq(2)
@@ -171,7 +183,10 @@ RSpec.describe List do
 		expect(iterator.value).to eq(2)
 		iterator = iterator.prev
 		expect(iterator.value).to eq(1)
+		iterator = iterator.prev
+		expect(iterator.value).to eq(10)
+		iterator = iterator.prev
+		expect(iterator.value).to eq("Las cadenas también funcionan.")
 		expect(iterator.prev).to eq(nil)
 	end
-
 end
