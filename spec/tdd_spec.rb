@@ -212,5 +212,20 @@ RSpec.describe List do
 		lista.pop_back
 		lista.pop_back
 		lista.pop_back
+
+		lista.push_back(nodo)
+		lista.push_front(20)
+		lista.push_back(nodo2)
+
+		lista.pop_front
+		lista.pop_front
+		expect(lista.head.value).to eq(2)
+		expect(lista.tail.value).to eq(lista.head.value)
+		expect(lista.head.object_id).to eq(lista.tail.object_id)
+		expect(lista.head.next).to eq(nil)
+		expect(lista.head.prev).to eq(nil)
+
+		lista.pop_front
+		lista.pop_front
 	end
 end
