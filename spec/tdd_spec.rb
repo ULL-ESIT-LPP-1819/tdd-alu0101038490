@@ -144,4 +144,9 @@ RSpec.describe List do
 		expect(lista.tail).to eq nil
 	end
 
+	it "maneja correctamente los nodos" do
+		lista = List.new
+		nodo = List.Node.new(1)
+	end
+
 end
