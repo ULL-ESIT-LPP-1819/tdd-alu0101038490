@@ -147,6 +147,14 @@ RSpec.describe List do
 	it "maneja correctamente los nodos" do
 		lista = List.new
 		nodo = List::Node.new(1)
+		expect(nodo.value).to eq(1)
+		expect(nodo.prev).to eq(nil)
+		expect(nodo.next).to eq(nil)
+
+		nodo2 = List::Node.new(2,4)
+		expect(nodo2.value).to eq(2)
+		expect(nodo2.next).to eq(4)
+		expect(nodo2.prev).to eq(nil)
 	end
 
 end
