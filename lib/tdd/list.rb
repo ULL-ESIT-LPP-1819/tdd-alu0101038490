@@ -4,7 +4,7 @@ class List
 
 	attr_accessor :tail, :head
 
-	def push(valor)
+	def push_back(valor)
 		if valor.class == Node
 			valor.next = nil
 			valor.prev = @tail
