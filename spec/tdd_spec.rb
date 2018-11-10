@@ -159,6 +159,19 @@ RSpec.describe List do
 		lista.push(nodo)
 		lista.push(nodo2)
 		lista.push(8)
+
+		iterator = lista.head
+		expect(iterator.value).to eq(1)
+		iterator = iterator.next
+		expect(iterator.value).to eq(2)
+		iterator = iterator.next
+		expect(iterator.value).to eq(8)
+		expect(iterator.next).to eq(nil)
+		iterator = iterator.prev
+		expect(iterator.value).to eq(2)
+		iterator = iterator.prev
+		expect(iterator.value).to eq(1)
+		expect(iterator.prev).to eq(nil)
 	end
 
 end
