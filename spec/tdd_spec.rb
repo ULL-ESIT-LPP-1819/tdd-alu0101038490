@@ -146,7 +146,7 @@ RSpec.describe List do
 
 	it "maneja correctamente los nodos" do
 		lista = List.new
-		nodo = List.Node.new(1)
+		nodo = List::Node.new(1)
 	end
 
 end
