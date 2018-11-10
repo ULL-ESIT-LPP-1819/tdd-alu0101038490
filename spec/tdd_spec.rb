@@ -139,7 +139,9 @@ end
 RSpec.describe List do
 	
 	it "se inicializa correctamente" do
-		expect(List.new)
+		lista = List.new
+		expect(lista.head).to eq nil
+		expect(lista.tail).to eq nil
 	end
 
 end
