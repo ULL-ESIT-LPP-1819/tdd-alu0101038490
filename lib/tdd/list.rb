@@ -37,11 +37,9 @@ class List
 	end
 
 	def pop_back
-		if !@tail.nil?
-			@tail = @tail.prev
-			@tail.next = nil
-			@head = nil if @tail.nil?
-		end
+		@tail = @tail.prev unless @tail == nil
+		@tail.next = nil unless @tail == nil
+		@head = nil if @tail == nil
 	end
 
 end

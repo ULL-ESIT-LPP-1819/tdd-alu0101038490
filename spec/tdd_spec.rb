@@ -208,6 +208,9 @@ RSpec.describe List do
 		end
 		expect(iterator).to eq(nil)
 
-
+		lista.pop_back
+		lista.pop_back
+		lista.pop_back
+		lista.pop_back
 	end
 end
