@@ -184,7 +184,7 @@ RSpec.describe List do
 		iterator = iterator.prev
 		expect(iterator.value).to eq(1)
 		iterator = iterator.prev
-		expect(iterator.value).to eq(10)
+		expect(iterator.value).to eq(20)
 		iterator = iterator.prev
 		expect(iterator.value).to eq("Las cadenas también funcionan.")
 		expect(iterator.prev).to eq(nil)

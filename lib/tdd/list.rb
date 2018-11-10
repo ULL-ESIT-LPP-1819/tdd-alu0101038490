@@ -20,4 +20,20 @@ class List
 		end	
 	end
 
+	def push_front(valor)
+		if valor.class == Node
+			valor.prev = nil
+			valor.next = @head
+			@head.prev = valor unless @head.nil?
+			@head = valor
+			@tail = valor if @tail.nil?
+		else
+			addedNode = Node.new(valor)
+			addedNode.next = @head
+			@head.prev = addedNode unless @head.nil?
+			@head = addedNode
+			@tail = addedNode if @tail.nil?
+		end	
+	end
+
 end
