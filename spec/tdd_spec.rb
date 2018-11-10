@@ -193,15 +193,15 @@ RSpec.describe List do
 		lista.pop_back
 
 		iterator = lista.head
-		results = [ "Las cadenas también funcionan." , 1 , 2 ]
+		results = [ "Las cadenas también funcionan." , 20 , 1 ]
 		results.length.times do |i|
 			expect(iterator.value).to eq(results[i])
 			iterator = iterator.next
 		end
 		expect(iterator).to eq(nil)
 		
-		iterator = lista.back
-		results = [ 2 , 1 , "Las cadenas también funcionan." ]
+		iterator = lista.tail
+		results = [ 1 , 20 , "Las cadenas también funcionan." ]
 		results.length.times do |i|
 			expect(iterator.value).to eq(results[i])
 			iterator = iterator.prev
