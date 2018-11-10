@@ -42,4 +42,10 @@ class List
 		@head = nil if @tail == nil
 	end
 
+	def pop_front
+		@head = @head.next unless @head == nil
+		@head.prev = nil unless @head == nil
+		@tail = nil if @head == nil
+	end
+
 end
