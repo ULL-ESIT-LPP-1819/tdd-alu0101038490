@@ -110,4 +110,8 @@ class List
 		end
 	end
 
+	def isEmpty
+		return size == 0
+	end
+
 end
