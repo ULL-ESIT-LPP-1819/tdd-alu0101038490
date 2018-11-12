@@ -335,6 +335,34 @@ RSpec.describe List do
 			iterator = iterator.prev
 			expect(iterator.value.nombre).to eq("Galletas saladas")
 			expect(iterator.prev).to eq(nil)
+
+			lista.remove(1)
+			lista.remove(2)
+
+			iterator = lista.head
+
+			expect(iterator.value.nombre).to eq("Galletas saladas")
+			iterator = iterator.next
+			expect(iterator.value.nombre).to eq("Magdalena")
+			iterator = iterator.next
+			expect(iterator.value.nombre).to eq("Barritas")
+			expect(iterator.next).to eq(nil)
+			iterator = iterator.prev
+			expect(iterator.value.nombre).to eq("Magdalena")
+			iterator = iterator.prev
+			expect(iterator.value.nombre).to eq("Galletas saladas")
+			expect(iterator.prev).to eq(nil)
+
+			lista.remove(0)
+			lista.remove(1)
+
+			iterator = lista.head
+
+			expect(iterator.value.nombre).to eq("Magdalena")
+			expect(iterator.value.next).to eq(nil)
+			expect(iterator.value.prev).to eq(nil)
+			expect(iterator.value).to eq(lista.head)
+			expect(lista.head).to eq(lista.tail)
 		end
 	end
 end
