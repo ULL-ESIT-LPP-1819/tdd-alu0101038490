@@ -348,6 +348,14 @@ RSpec.describe List do
 			expect(iterator.value.nombre).to eq("Galletas saladas")
 			expect(iterator.prev).to eq(nil)
 
+			iterator = lista.head
+			sal = []
+			while iterator != nil do
+				sal.push(iterator.value.sal)
+				iterator = iterator.next
+			end
+			expect(sal).to eq([1.75,0.0,1.15,0.57,0.39])
+
 			lista.remove(1)
 			lista.remove(2)
 			expect(lista.isEmpty).to eq(false)
@@ -380,6 +388,8 @@ RSpec.describe List do
 
 			lista.remove(0)
 			expect(lista.isEmpty).to eq(true)
+
+			
 
 		end
 	end
