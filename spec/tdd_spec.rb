@@ -138,94 +138,176 @@ end
 
 RSpec.describe List do
 	
-	it "se inicializa correctamente" do
-		lista = List.new
-		expect(lista.head).to eq nil
-		expect(lista.tail).to eq nil
+	context "con valores númericos y cadenas" do
+		
+		it "se inicializa correctamente" do
+			lista = List.new
+			expect(lista.head).to eq nil
+			expect(lista.tail).to eq nil
+		end
+
+		it "maneja correctamente los nodos" do
+			lista = List.new
+			nodo = List::Node.new(1)
+			expect(nodo.value).to eq(1)
+			expect(nodo.prev).to eq(nil)
+			expect(nodo.next).to eq(nil)
+
+			nodo2 = List::Node.new(2,4)
+			expect(nodo2.value).to eq(2)
+			expect(nodo2.next).to eq(4)
+			expect(nodo2.prev).to eq(nil)
+		
+			nodo3 = List::Node.new("Las cadenas también funcionan.")
+			expect(nodo3.value).to eq("Las cadenas también funcionan.")
+			expect(nodo3.prev).to eq(nil)
+			expect(nodo3.next).to eq(nil)
+		
+			lista.push_back(nodo)
+			lista.push_front(20)
+			lista.push_back(nodo2)
+			lista.push_front(nodo3)
+			lista.push_back(8)
+
+			iterator = lista.head
+		
+			expect(iterator.value).to eq("Las cadenas también funcionan.")
+			iterator = iterator.next
+			expect(iterator.value).to eq(20)
+			iterator = iterator.next
+			expect(iterator.value).to eq(1)
+			iterator = iterator.next
+			expect(iterator.value).to eq(2)
+			iterator = iterator.next
+			expect(iterator.value).to eq(8)
+			expect(iterator.next).to eq(nil)
+			iterator = iterator.prev
+			expect(iterator.value).to eq(2)
+			iterator = iterator.prev
+			expect(iterator.value).to eq(1)
+			iterator = iterator.prev
+			expect(iterator.value).to eq(20)
+			iterator = iterator.prev
+			expect(iterator.value).to eq("Las cadenas también funcionan.")
+			expect(iterator.prev).to eq(nil)
+
+			lista.pop_back
+			lista.pop_back
+
+			iterator = lista.head
+			results = [ "Las cadenas también funcionan." , 20 , 1 ]
+			results.length.times do |i|
+				expect(iterator.value).to eq(results[i])
+				iterator = iterator.next
+			end
+			expect(iterator).to eq(nil)
+		
+			iterator = lista.tail
+			results = [ 1 , 20 , "Las cadenas también funcionan." ]
+			results.length.times do |i|
+				expect(iterator.value).to eq(results[i])
+				iterator = iterator.prev
+			end
+			expect(iterator).to eq(nil)
+
+			lista.pop_back
+			lista.pop_back
+			lista.pop_back
+			lista.pop_back
+
+			lista.push_back(nodo)
+			lista.push_front(20)
+			lista.push_back(nodo2)
+
+			lista.pop_front
+			lista.pop_front
+			expect(lista.head.value).to eq(2)
+			expect(lista.tail.value).to eq(lista.head.value)
+			expect(lista.head.object_id).to eq(lista.tail.object_id)
+			expect(lista.head.next).to eq(nil)
+			expect(lista.head.prev).to eq(nil)
+
+			lista.pop_front
+			lista.pop_front
+		end
 	end
 
-	it "maneja correctamente los nodos" do
-		lista = List.new
-		nodo = List::Node.new(1)
-		expect(nodo.value).to eq(1)
-		expect(nodo.prev).to eq(nil)
-		expect(nodo.next).to eq(nil)
-
-		nodo2 = List::Node.new(2,4)
-		expect(nodo2.value).to eq(2)
-		expect(nodo2.next).to eq(4)
-		expect(nodo2.prev).to eq(nil)
+	context "con valores de tipo Etiqueta" do
 		
-		nodo3 = List::Node.new("Las cadenas también funcionan.")
-		expect(nodo3.value).to eq("Las cadenas también funcionan.")
-		expect(nodo3.prev).to eq(nil)
-		expect(nodo3.next).to eq(nil)
+		it "maneja correctamente los nodos" do
+			lista = List.new
+			nodo = List::Node.new(Etiqueta.new("Magdalena",21.7,2.6,54.9,29.0,4.8,1.15,0.0,0.0,0.0,0.0,0.0,0.0,0.0))
+			expect(nodo.value.nombre).to eq("Magdalena")
+
+			nodo2 = List::Node.new(Etiqueta.new("Galletas",12.0,2.9,62.0,23.0,8.0,0.57,5.6,3.5,19.5,19.5,12.0,0.0,0.0))
+			expect(nodo2.value.nombre).to eq("Galletas")
 		
-		lista.push_back(nodo)
-		lista.push_front(20)
-		lista.push_back(nodo2)
-		lista.push_front(nodo3)
-		lista.push_back(8)
+			lista.push_back(nodo)
+			lista.push_front(Etiqueta.new("Caramelos",6.6,3.9,84.0,70.0,0.8,0.0,0.4,2.3,0.0,0.0,0.0,0.0,0.0))
+			lista.push_back(nodo2)
+			lista.push_front(Etiqueta.new("Galletas saladas",19.0,1.9,67.0,7.1,8.3,1.75,0.0,0.0,0.0,0.0,2.4,0.0,0.0))
+			lista.push_back(Etiqueta.new("Barritas",14.0,8.8,71.0,40.0,5.4,0.39,4.2,0.8,0.0,0.0,0.0,0.0,0.0))
 
-		iterator = lista.head
+			iterator = lista.head
 		
-		expect(iterator.value).to eq("Las cadenas también funcionan.")
-		iterator = iterator.next
-		expect(iterator.value).to eq(20)
-		iterator = iterator.next
-		expect(iterator.value).to eq(1)
-		iterator = iterator.next
-		expect(iterator.value).to eq(2)
-		iterator = iterator.next
-		expect(iterator.value).to eq(8)
-		expect(iterator.next).to eq(nil)
-		iterator = iterator.prev
-		expect(iterator.value).to eq(2)
-		iterator = iterator.prev
-		expect(iterator.value).to eq(1)
-		iterator = iterator.prev
-		expect(iterator.value).to eq(20)
-		iterator = iterator.prev
-		expect(iterator.value).to eq("Las cadenas también funcionan.")
-		expect(iterator.prev).to eq(nil)
-
-		lista.pop_back
-		lista.pop_back
-
-		iterator = lista.head
-		results = [ "Las cadenas también funcionan." , 20 , 1 ]
-		results.length.times do |i|
-			expect(iterator.value).to eq(results[i])
+			expect(iterator.value.nombre).to eq("Galletas saladas")
 			iterator = iterator.next
-		end
-		expect(iterator).to eq(nil)
-		
-		iterator = lista.tail
-		results = [ 1 , 20 , "Las cadenas también funcionan." ]
-		results.length.times do |i|
-			expect(iterator.value).to eq(results[i])
+			expect(iterator.value.nombre).to eq("Caramelos")
+			iterator = iterator.next
+			expect(iterator.value.nombre).to eq("Magdalena")
+			iterator = iterator.next
+			expect(iterator.value.nombre).to eq("Galletas")
+			iterator = iterator.next
+			expect(iterator.value.nombre).to eq("Barritas")
+			expect(iterator.next).to eq(nil)
 			iterator = iterator.prev
+			expect(iterator.value.nombre).to eq("Galletas")
+			iterator = iterator.prev
+			expect(iterator.value.nombre).to eq("Magdalena")
+			iterator = iterator.prev
+			expect(iterator.value.nombre).to eq("Caramelos")
+			iterator = iterator.prev
+			expect(iterator.value.nombre).to eq("Galletas saladas")
+			expect(iterator.prev).to eq(nil)
+
+			lista.pop_back
+			lista.pop_back
+
+			iterator = lista.head
+			results = [ "Galletas saladas" , "Caramelos" , "Magdalena" ]
+			results.length.times do |i|
+				expect(iterator.value.nombre).to eq(results[i])
+				iterator = iterator.next
+			end
+			expect(iterator).to eq(nil)
+		
+			iterator = lista.tail
+			results = [ "Magdalena" , "Caramelos" , "Galletas saladas" ]
+			results.length.times do |i|
+				expect(iterator.value.nombre).to eq(results[i])
+				iterator = iterator.prev
+			end
+			expect(iterator).to eq(nil)
+
+			lista.pop_back
+			lista.pop_back
+			lista.pop_back
+			lista.pop_back
+
+			lista.push_back(nodo)
+			lista.push_front(Etiqueta.new("Caramelos",6.6,3.9,84.0,70.0,0.8,0.0,0.4,2.3,0.0,0.0,0.0,0.0,0.0))
+			lista.push_back(nodo2)
+
+			lista.pop_front
+			lista.pop_front
+			expect(lista.head.value.nombre).to eq("Galletas")
+			expect(lista.tail.value.nombre).to eq(lista.head.value.nombre)
+			expect(lista.head.object_id).to eq(lista.tail.object_id)
+			expect(lista.head.next).to eq(nil)
+			expect(lista.head.prev).to eq(nil)
+
+			lista.pop_front
 		end
-		expect(iterator).to eq(nil)
 
-		lista.pop_back
-		lista.pop_back
-		lista.pop_back
-		lista.pop_back
-
-		lista.push_back(nodo)
-		lista.push_front(20)
-		lista.push_back(nodo2)
-
-		lista.pop_front
-		lista.pop_front
-		expect(lista.head.value).to eq(2)
-		expect(lista.tail.value).to eq(lista.head.value)
-		expect(lista.head.object_id).to eq(lista.tail.object_id)
-		expect(lista.head.next).to eq(nil)
-		expect(lista.head.prev).to eq(nil)
-
-		lista.pop_front
-		lista.pop_front
 	end
 end
