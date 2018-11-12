@@ -241,12 +241,15 @@ RSpec.describe List do
 
 			nodo2 = List::Node.new(Etiqueta.new("Galletas",12.0,2.9,62.0,23.0,8.0,0.57,5.6,3.5,19.5,19.5,12.0,0.0,0.0))
 			expect(nodo2.value.nombre).to eq("Galletas")
-		
+	
+			expect(lista.isEmpty).to eq(true)	
 			lista.push_back(nodo)
+			expect(lista.isEmpty).to eq(false)
 			lista.push_front(Etiqueta.new("Caramelos",6.6,3.9,84.0,70.0,0.8,0.0,0.4,2.3,0.0,0.0,0.0,0.0,0.0))
 			lista.push_back(nodo2)
 			lista.push_front(Etiqueta.new("Galletas saladas",19.0,1.9,67.0,7.1,8.3,1.75,0.0,0.0,0.0,0.0,2.4,0.0,0.0))
 			lista.push_back(Etiqueta.new("Barritas",14.0,8.8,71.0,40.0,5.4,0.39,4.2,0.8,0.0,0.0,0.0,0.0,0.0))
+			expect(lista.isEmpty).to eq(false)
 
 			iterator = lista.head
 		
@@ -272,6 +275,7 @@ RSpec.describe List do
 
 			lista.pop_back
 			lista.pop_back
+			expect(lista.isEmpty).to eq(false)
 
 			iterator = lista.head
 			results = [ "Galletas saladas" , "Caramelos" , "Magdalena" ]
@@ -293,13 +297,17 @@ RSpec.describe List do
 			lista.pop_back
 			lista.pop_back
 			lista.pop_back
+			expect(lista.isEmpty).to eq(true)
 
 			lista.push_back(nodo)
+			expect(lista.isEmpty).to eq(false)
 			lista.push_front(Etiqueta.new("Caramelos",6.6,3.9,84.0,70.0,0.8,0.0,0.4,2.3,0.0,0.0,0.0,0.0,0.0))
 			lista.push_back(nodo2)
+			expect(lista.isEmpty).to eq(false)
 
 			lista.pop_front
 			lista.pop_front
+			expect(lista.isEmpty).to eq(false)
 			expect(lista.head.value.nombre).to eq("Galletas")
 			expect(lista.tail.value.nombre).to eq(lista.head.value.nombre)
 			expect(lista.head.object_id).to eq(lista.tail.object_id)
@@ -307,12 +315,16 @@ RSpec.describe List do
 			expect(lista.head.prev).to eq(nil)
 
 			lista.pop_front
+			expect(lista.isEmpty).to eq(true)
 
 			lista.insert(0,Etiqueta.new("Caramelos",6.6,3.9,84.0,70.0,0.8,0.0,0.4,2.3,0.0,0.0,0.0,0.0,0.0))
+			expect(lista.isEmpty).to eq(false)
 			lista.insert(1,nodo)
+			expect(lista.isEmpty).to eq(false)
 			lista.insert(2,Etiqueta.new("Barritas",14.0,8.8,71.0,40.0,5.4,0.39,4.2,0.8,0.0,0.0,0.0,0.0,0.0))
 			lista.insert(0,Etiqueta.new("Galletas saladas",19.0,1.9,67.0,7.1,8.3,1.75,0.0,0.0,0.0,0.0,2.4,0.0,0.0))
 			lista.insert(3,nodo2)
+			expect(lista.isEmpty).to eq(false)
 
 			iterator = lista.head
 		
@@ -338,6 +350,7 @@ RSpec.describe List do
 
 			lista.remove(1)
 			lista.remove(2)
+			expect(lista.isEmpty).to eq(false)
 
 			iterator = lista.head
 
@@ -355,6 +368,7 @@ RSpec.describe List do
 
 			lista.remove(0)
 			lista.remove(1)
+			expect(lista.isEmpty).to eq(false)
 
 			iterator = lista.head
 
@@ -363,6 +377,10 @@ RSpec.describe List do
 			expect(iterator.prev).to eq(nil)
 			expect(iterator).to eq(lista.head)
 			expect(lista.head).to eq(lista.tail)
+
+			lista.remove(0)
+			expect(lista.isEmpty).to eq(true)
+
 		end
 	end
 end
