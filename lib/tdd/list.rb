@@ -2,7 +2,7 @@ class List
 
 	Node = Struct.new(:value, :next, :prev)
 
-	attr_accessor :tail, :head, :size
+	attr_reader :tail, :head, :size
 
 	def initialize
 		@size = 0
