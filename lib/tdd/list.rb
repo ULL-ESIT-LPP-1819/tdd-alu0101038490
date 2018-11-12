@@ -92,4 +92,22 @@ class List
 		end
 	end
 
+	def remove (position)
+		if position.is_a? Integer
+			if position == 0 
+				pop_front
+			elsif position == (@size - 1)
+				pop_back
+			elsif position < (@size - 1) && position > 0
+				iterator = @head
+				position.times do |i|
+					iterator = iterator.next
+				end		
+				iterator.next.prev = iterator.prev
+				iterator.prev.next = iterator.next
+				@size = @size - 1
+			end
+		end
+	end
+
 end

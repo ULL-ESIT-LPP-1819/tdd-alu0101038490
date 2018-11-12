@@ -359,9 +359,9 @@ RSpec.describe List do
 			iterator = lista.head
 
 			expect(iterator.value.nombre).to eq("Magdalena")
-			expect(iterator.value.next).to eq(nil)
-			expect(iterator.value.prev).to eq(nil)
-			expect(iterator.value).to eq(lista.head)
+			expect(iterator.next).to eq(nil)
+			expect(iterator.prev).to eq(nil)
+			expect(iterator).to eq(lista.head)
 			expect(lista.head).to eq(lista.tail)
 		end
 	end
