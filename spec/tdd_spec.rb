@@ -307,7 +307,34 @@ RSpec.describe List do
 			expect(lista.head.prev).to eq(nil)
 
 			lista.pop_front
-		end
 
+			lista.insert(0,Etiqueta.new("Caramelos",6.6,3.9,84.0,70.0,0.8,0.0,0.4,2.3,0.0,0.0,0.0,0.0,0.0))
+			lista.insert(1,nodo)
+			lista.insert(2,Etiqueta.new("Barritas",14.0,8.8,71.0,40.0,5.4,0.39,4.2,0.8,0.0,0.0,0.0,0.0,0.0))
+			lista.insert(0,Etiqueta.new("Galletas saladas",19.0,1.9,67.0,7.1,8.3,1.75,0.0,0.0,0.0,0.0,2.4,0.0,0.0))
+			lista.insert(3,nodo2)
+
+			iterator = lista.head
+		
+			expect(iterator.value.nombre).to eq("Galletas saladas")
+			iterator = iterator.next
+			expect(iterator.value.nombre).to eq("Caramelos")
+			iterator = iterator.next
+			expect(iterator.value.nombre).to eq("Magdalena")
+			iterator = iterator.next
+			expect(iterator.value.nombre).to eq("Galletas")
+			iterator = iterator.next
+			expect(iterator.value.nombre).to eq("Barritas")
+			expect(iterator.next).to eq(nil)
+			iterator = iterator.prev
+			expect(iterator.value.nombre).to eq("Galletas")
+			iterator = iterator.prev
+			expect(iterator.value.nombre).to eq("Magdalena")
+			iterator = iterator.prev
+			expect(iterator.value.nombre).to eq("Caramelos")
+			iterator = iterator.prev
+			expect(iterator.value.nombre).to eq("Galletas saladas")
+			expect(iterator.prev).to eq(nil)
+		end
 	end
 end
