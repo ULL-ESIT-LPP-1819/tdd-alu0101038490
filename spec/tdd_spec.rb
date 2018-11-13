@@ -321,8 +321,8 @@ RSpec.describe List do
 			expect(lista.isEmpty).to eq(false)
 			lista.insert(1,nodo)
 			expect(lista.isEmpty).to eq(false)
-			lista.insert(2,Etiqueta.new("Barritas",14.0,8.8,71.0,40.0,5.4,0.39,4.2,0.8,0.0,0.0,0.0,0.0,0.0))
-			lista.insert(0,Etiqueta.new("Galletas saladas",19.0,1.9,67.0,7.1,8.3,1.75,0.0,0.0,0.0,0.0,2.4,0.0,0.0))
+			lista.insert(2,Etiqueta.new("Barritas",14.0,8.8,71.0,40.0,5.4,6.39,4.2,0.8,0.0,0.0,0.0,0.0,0.0))
+			lista.insert(0,Etiqueta.new("Galletas saladas",19.0,1.9,67.0,7.1,8.3,20.75,0.0,0.0,0.0,0.0,2.4,0.0,0.0))
 			lista.insert(3,nodo2)
 			expect(lista.isEmpty).to eq(false)
 
@@ -349,12 +349,18 @@ RSpec.describe List do
 			expect(iterator.prev).to eq(nil)
 
 			iterator = lista.head
-			sal = []
+			salAdecuada = []
+			salInadecuada = []
 			while iterator != nil do
-				sal.push(iterator.value.sal)
+				if iterator.value.porcentajeSal <= 100
+					salAdecuada.push(iterator.value.sal)
+				else 
+					salInadecuada.push(iterator.value.sal)
+				end
 				iterator = iterator.next
 			end
-			expect(sal).to eq([1.75,0.0,1.15,0.57,0.39])
+			expect(salAdecuada).to eq([0.0,1.15,0.57])
+			expect(salInadecuada).to eq([20.75,6.39])
 
 			lista.remove(1)
 			lista.remove(2)
@@ -388,8 +394,6 @@ RSpec.describe List do
 
 			lista.remove(0)
 			expect(lista.isEmpty).to eq(true)
-
-			
 
 		end
 	end
