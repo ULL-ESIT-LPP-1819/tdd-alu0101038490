@@ -22,6 +22,7 @@ class List
 		@tail = addedNode
 		@head = addedNode if @head.nil?	
 		@size = @size + 1
+		return nil
 	end
 
 	def push_front(valor)
@@ -36,6 +37,7 @@ class List
 		@head = addedNode
 		@tail = addedNode if @tail.nil?	
 		@size = @size + 1
+		return nil
 	end
 
 	def pop_back
@@ -45,6 +47,7 @@ class List
 		if @size > 0
 			@size = @size - 1
 		end
+		return nil
 	end
 
 	def pop_front
@@ -54,6 +57,7 @@ class List
 		if @size > 0
 			@size = @size - 1
 		end
+		return nil
 	end
 
 	def insert (position, valor)
@@ -79,6 +83,7 @@ class List
 				@size = @size + 1
 			end
 		end
+		return nil
 	end
 
 	def remove (position)
@@ -97,6 +102,7 @@ class List
 				@size = @size - 1
 			end
 		end
+		return nil
 	end
 
 	def isEmpty
