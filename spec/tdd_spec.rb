@@ -487,6 +487,50 @@ RSpec.describe "Pruebas sobre la herencia" do
                                                "\tMedida  2: 34cm" +
                                                "\tMedida  3: 33cm" +
 					       "\tMedia: 32.33cm")
+	end
+
+	it "clasifica correctamente a los pacientes según su IMC" do
+		pacientes = List.new
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",66.424,1.9,20,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",86.81416,1.78,20,true,88.83,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",86.60512,1.64,20,true,93.5,85,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",100.710637,1.77,20,false,75.17,102,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",147.72492,1.86,20,false,75.7152,95.6,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",68,1.85,20,false,0.73863,0.87,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
+
+		pesosBajos = []
+		adecuados = []
+		sobrepeso = []
+		obesidadGradoUno = []
+		obesidadGradoDos = []
+		obesidadGradoTres = []
+
+		iterator = pacientes.head
+		while iterator != nil do
+			valor = iterator.value.imc
+			if valor < 18.5
+				pesosBajos.push(valor)
+			elsif valor >= 18.5 && valor < 25
+				adecuados.push(valor)
+			elsif valor >= 25 && valor < 30
+				sobrepeso.push(valor)
+			elsif valor >= 30 && valor < 35
+				obesidadGradoUno.push(valor)
+			elsif valor >= 35 && valor < 40
+				obesidadGradoDos.push(valor)
+			elsif valor >= 40
+				obesidadGradoTres.push(valor)
+			end
+			iterator = iterator.next
+		end
+		expect(pesosBajos).to eq([18.4])
+		expect(adecuados).to eq([20.45,19.87])
+		expect(sobrepeso).to eq([27.4])
+		expect(obesidadGradoUno).to eq([32.2,32.15])
+		expect(obesidadGradoDos).to eq([])
+		expect(obesidadGradoTres).to eq([42.7])
+
 	end	
 
 end
