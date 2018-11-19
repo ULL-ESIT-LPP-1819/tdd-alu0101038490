@@ -117,4 +117,40 @@ class Paciente < Individuo
 		pliegues << mediaSuprailiaco
 		return pliegues
 	end
+
+	def to_s
+		medias = plieguesCutaneos
+		pliegues_s = "\n  Medidas cutáneas del tricipital"
+		@tricipital.length.times do |i|
+		    pliegues_s += "\tMedida  #{i+1}: #{@tricipital[i]}cm"
+		end
+		pliegues_s += "\tMedia: #{medias[0]}cm"
+
+		pliegues_s += "\n  Medidas cutáneas del bicipital"
+		@bicipital.length.times do |i|
+		    pliegues_s += "\tMedida  #{i+1}: #{@bicipital[i]}cm"
+		end
+		pliegues_s += "\tMedia: #{medias[1]}cm"
+
+		pliegues_s += "\n  Medidas cutáneas del subescapular"
+		@subescapular.length.times do |i|
+		    pliegues_s += "\tMedida  #{i+1}: #{@subescapular[i]}cm"
+		end
+		pliegues_s += "\tMedia: #{medias[2]}cm"
+
+		pliegues_s += "\n  Medidas cutáneas del suprailíaco"
+		@suprailíaco.length.times do |i|
+		    pliegues_s += "\tMedida  #{i+1}: #{@suprailíaco[i]}cm"
+		end
+		pliegues_s += "\tMedia: #{medias[3]}cm"
+
+		super.to_s +
+		"\n  Datos antropométricos" +
+	       "\tPeso: #{@peso}kg\tTalla: #{@talla}m" +
+		"\tIMC: #{imc_s}\tPorcentaje de grasa: #{grasa}%" +
+		"\n  Circunferencias" +
+		"\tCintura: #{@cintura} cm\tCadera: #{@cadera} cm" +
+		"\tRCC: #{rcc_s}" +
+		pliegues_s
+	end
 end

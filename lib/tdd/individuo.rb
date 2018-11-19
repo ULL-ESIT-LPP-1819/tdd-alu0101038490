@@ -9,4 +9,12 @@ class Individuo
 		@sexo = sexo
 	end
 
+	def to_s
+		if @sexo
+		    "\n  #{@nombre} #{@apellidos}, hombre, #{@edad} años"
+		else
+		    "\n  #{@nombre} #{@apellidos}, mujer, #{@edad} años"
+		end
+	end
+
 end

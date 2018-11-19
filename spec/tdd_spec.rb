@@ -459,8 +459,8 @@ RSpec.describe "Pruebas sobre la herencia" do
 		persona1 = Individuo.new("Jorge","González Cabrera", 20, true)
 		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
 
-		expect(persona1.to_s).to equal("\n  Jorge González Cabrera, hombre, 20 años")
-		expect(paciente1.to_s).to equal("\n  Jorge González Cabrera, hombre, 20 años" +
+		expect(persona1.to_s).to eq("\n  Jorge González Cabrera, hombre, 20 años")
+		expect(paciente1.to_s).to eq("\n  Jorge González Cabrera, hombre, 20 años" +
 					       "\n  Datos antropométricos" +
 					       "\tPeso: 70kg\tTalla: 1.85m" +
 					       "\tIMC: 20.45 (Adecuado)\tPorcentaje de grasa: 12.94%" +
