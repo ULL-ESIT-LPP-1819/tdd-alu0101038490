@@ -423,7 +423,7 @@ RSpec.describe "Pruebas sobre la herencia" do
 		expect(paciente1.tricipital).to eq([50,48,53])
 		expect(paciente1.bicipital).to eq([20,19,17])
 		expect(paciente1.subescapular).to eq([84,87,85])
-		expect(paciente1.suprailíaco).to eq(30,34,33)
+		expect(paciente1.suprailíaco).to eq([30,34,33])
 	end	
 
 end
