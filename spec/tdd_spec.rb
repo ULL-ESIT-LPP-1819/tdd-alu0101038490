@@ -398,3 +398,16 @@ RSpec.describe List do
 		end
 	end
 end
+
+
+RSpec.describe "Pruebas sobre la herencia" do
+	
+	it "crea correctamente la clase Individuo" do
+		persona1 = Individuo.new("Jorge","González Cabrera", 20, true)
+		expect(persona1.nombre).to eq("Jorge")
+		expect(persona1.apellidos).to eq("González Cabrera")
+		expect(persona1.edad).to eq(20)
+		expect(persona1.sexo).to eq(true)
+	end
+
+end
