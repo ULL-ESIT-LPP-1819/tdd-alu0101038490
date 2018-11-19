@@ -410,4 +410,20 @@ RSpec.describe "Pruebas sobre la herencia" do
 		expect(persona1.sexo).to eq(true)
 	end
 
+	it "crea correctamente la clase Paciente" do
+		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+		expect(paciente1.nombre).to eq("Jorge")
+		expect(paciente1.apellidos).to eq("González Cabrera")
+		expect(paciente1.edad).to eq(20)
+		expect(paciente1.sexo).to eq(true)
+		expect(paciente1.peso).to eq(70)
+		expect(paciente1.talla).to eq(1.85)
+		expect(paciente1.cintura).to eq(80)
+		expect(paciente1.cadera).to eq(90)
+		expect(paciente1.tricipital).to eq([50,48,53])
+		expect(paciente1.bicipital).to eq([20,19,17])
+		expect(paciente1.subescapular).to eq([84,87,85])
+		expect(paciente1.suprailíaco).to eq(30,34,33)
+	end	
+
 end
