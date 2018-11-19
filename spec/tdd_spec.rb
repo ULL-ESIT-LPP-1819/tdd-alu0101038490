@@ -453,6 +453,40 @@ RSpec.describe "Pruebas sobre la herencia" do
 		expect(prueba7.rcc_s).to eq("0.849 (Alto)")
 
 		expect(prueba1.plieguesCutaneos).to eq([50.33,18.67,85.33,32.33])
+	end
+
+	it "muestra correctamente los datos" do
+		persona1 = Individuo.new("Jorge","González Cabrera", 20, true)
+		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+
+		expect(persona1.to_s).to equal("\n  Jorge González Cabrera, hombre, 20 años")
+		expect(paciente1.to_s).to equal("\n  Jorge González Cabrera, hombre, 20 años" +
+					       "\n  Datos antropométricos" +
+					       "\tPeso: 70kg\tTalla: 1.85m" +
+					       "\tIMC: 20.45 (Adecuado)\tPorcentaje de grasa: 12.94%" +
+					       "\n  Circunferencias" +
+					       "\tCintura: 80 cm\tCadera: 90 cm" +
+					       "\tRCC: 0.889 (Moderado)" +
+					       "\n  Medidas cutáneas del tricipital" +
+					       "\tMedida  1: 50cm" +
+					       "\tMedida  2: 48cm" +
+					       "\tMedida  3: 53cm" +
+					       "\tMedia: 50.33cm" +
+					       "\n  Medidas cutáneas del bicipital" +
+					       "\tMedida  1: 20cm" +
+                                               "\tMedida  2: 19cm" +
+                                               "\tMedida  3: 17cm" +
+					       "\tMedia: 18.67cm" +
+					       "\n  Medidas cutáneas del subescapular" +
+					       "\tMedida  1: 84cm" +
+                                               "\tMedida  2: 87cm" +
+                                               "\tMedida  3: 85cm" +
+					       "\tMedia: 85.33cm" +
+					       "\n  Medidas cutáneas del suprailíaco" +
+					       "\tMedida  1: 30cm" +
+                                               "\tMedida  2: 34cm" +
+                                               "\tMedida  3: 33cm" +
+					       "\tMedia: 32.33cm")
 	end	
 
 end
