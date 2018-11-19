@@ -424,6 +424,35 @@ RSpec.describe "Pruebas sobre la herencia" do
 		expect(paciente1.bicipital).to eq([20,19,17])
 		expect(paciente1.subescapular).to eq([84,87,85])
 		expect(paciente1.suprailíaco).to eq([30,34,33])
+	end
+
+	it "calcula correctamente los valores antropométricos del paciente" do
+		prueba1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+        	prueba2 = Paciente.new("Jorge","González Cabrera",66.424,1.9,20,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+        	prueba3 = Paciente.new("Jorge","González Cabrera",86.81416,1.78,20,true,88.83,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+        	prueba4 = Paciente.new("Jorge","González Cabrera",86.60512,1.64,20,true,93.5,85,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+        	prueba5 = Paciente.new("Jorge","González Cabrera",120.710637,1.77,20,false,75.17,102,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+        	prueba6 = Paciente.new("Jorge","González Cabrera",147.72492,1.86,20,false,75.7152,95.6,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+        	prueba7 = Paciente.new("Jorge","González Cabrera",70,1.85,20,false,0.73863,0.87,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+
+		expect(prueba1.imc_s).to eq("20.45 (Adecuado)")
+		expect(prueba2.imc_s).to eq("18.4 (Bajo peso)")
+		expect(prueba3.imc_s).to eq("27.4 (Sobrepeso)")
+		expect(prueba4.imc_s).to eq("32.2 (Obesidad grado 1)")
+		expect(prueba5.imc_s).to eq("38.53 (Obesidad grado 2)")
+		expect(prueba6.imc_s).to eq("42.7 (Obesidad grado 3)")
+		
+		expect(prueba1.grasa.round(2)).to eq(12.94)
+
+		expect(prueba1.rcc_s).to eq("0.889 (Moderado)")
+		expect(prueba2.rcc_s).to eq("0.843 (Bajo)")
+		expect(prueba3.rcc_s).to eq("0.987 (Alto)")
+		expect(prueba4.rcc_s).to eq("1.1 (Muy alto)")
+		expect(prueba5.rcc_s).to eq("0.737 (Bajo)")
+		expect(prueba6.rcc_s).to eq("0.792 (Moderado)")
+		expect(prueba7.rcc_s).to eq("0.849 (Alto)")
+
+		expect(prueba1.plieguesCutaneos).to eq([50.33,18.67,85.33,32.33])
 	end	
 
 end
