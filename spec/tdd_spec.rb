@@ -134,6 +134,19 @@ RSpec.describe Etiqueta do
 		end
 
 	end
+
+	it "comprueba las clases, tipos y la jerarquía." do
+		prueba = Etiqueta.new("Magdalena",21.7,2.6,54.9,29.0,4.8,1.15,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
+		expect(prueba.class).to eq(Etiqueta)
+
+		expect(prueba.respond_to?('porcentajeSaturadas')).to eq(true)
+		expect(prueba.respond_to?('valorEnergeticoEnKJ')).to eq(true)
+		expect(prueba.respond_to?('to_s')).to eq(true)
+
+		expect(prueba.class.superclass).to eq(Object)
+		expect(prueba.class.ancestors.include?Object).to eq(true)
+		expect(prueba.class.ancestors.include?BasicObject).to eq(true)
+	end	
 end
 
 RSpec.describe List do
@@ -397,6 +410,19 @@ RSpec.describe List do
 
 		end
 	end
+
+	it "comprueba las clases, tipos y la jerarquía." do
+		prueba = List.new
+		expect(prueba.class).to eq(List)
+
+		expect(prueba.respond_to?('push_back')).to eq(true)
+		expect(prueba.respond_to?('insert')).to eq(true)
+		expect(prueba.respond_to?('remove')).to eq(true)
+
+		expect(prueba.class.superclass).to eq(Object)
+		expect(prueba.class.ancestors.include?Object).to eq(true)
+		expect(prueba.class.ancestors.include?BasicObject).to eq(true)
+	end	
 end
 
 
@@ -531,6 +557,28 @@ RSpec.describe "Pruebas sobre la herencia" do
 		expect(obesidadGradoDos).to eq([])
 		expect(obesidadGradoTres).to eq([42.7])
 
+	end
+
+	it "comprobación de clases, tipos y pertenencia a una jerarquía" do
+		persona1 = Individuo.new("Jorge","González Cabrera", 20, true)
+		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+
+		expect(paciente1.class).to eq(Paciente)
+		expect(paciente1.class).to_not eq(Individuo)
+		expect(persona1.class).to eq(Individuo)
+		expect(persona1.class).to_not eq(Paciente)
+
+		expect(paciente1.respond_to?('imc_s')).to eq(true)
+		expect(persona1.respond_to?('imc_s')).to eq(false)
+		expect(paciente1.respond_to?('rcc_s')).to eq(true)
+		expect(persona1.respond_to?('rcc_s')).to eq(false)
+		expect(paciente1.respond_to?('to_s')).to eq(true)
+		expect(persona1.respond_to?('to_s')).to eq(true)
+
+		expect(paciente1.class.superclass).to eq(Individuo)
+		expect(paciente1.class.ancestors.include?Individuo).to eq(true)
+		expect(paciente1.class.ancestors.include?Object).to eq(true)
+		expect(paciente1.class.ancestors.include?BasicObject).to eq(true)
 	end	
 
 end
