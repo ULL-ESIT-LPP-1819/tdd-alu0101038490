@@ -134,6 +134,19 @@ RSpec.describe Etiqueta do
 		end
 
 	end
+
+	it "comprueba las clases, tipos y la jerarquía." do
+		prueba = Etiqueta.new("Magdalena",21.7,2.6,54.9,29.0,4.8,1.15,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
+		expect(prueba.class).to eq(Etiqueta)
+
+		expect(prueba.respond_to?('porcentajeSaturadas')).to eq(true)
+		expect(prueba.respond_to?('valorEnergeticoEnKJ')).to eq(true)
+		expect(prueba.respond_to?('to_s')).to eq(true)
+
+		expect(prueba.class.superclass).to eq(Object)
+		expect(prueba.class.ancestors.include?Object).to eq(true)
+		expect(prueba.class.ancestors.include?BasicObject).to eq(true)
+	end	
 end
 
 RSpec.describe List do
@@ -397,4 +410,175 @@ RSpec.describe List do
 
 		end
 	end
+
+	it "comprueba las clases, tipos y la jerarquía." do
+		prueba = List.new
+		expect(prueba.class).to eq(List)
+
+		expect(prueba.respond_to?('push_back')).to eq(true)
+		expect(prueba.respond_to?('insert')).to eq(true)
+		expect(prueba.respond_to?('remove')).to eq(true)
+
+		expect(prueba.class.superclass).to eq(Object)
+		expect(prueba.class.ancestors.include?Object).to eq(true)
+		expect(prueba.class.ancestors.include?BasicObject).to eq(true)
+	end	
+end
+
+
+RSpec.describe "Pruebas sobre la herencia" do
+	
+	it "crea correctamente la clase Individuo" do
+		persona1 = Individuo.new("Jorge","González Cabrera", 20, true)
+		expect(persona1.nombre).to eq("Jorge")
+		expect(persona1.apellidos).to eq("González Cabrera")
+		expect(persona1.edad).to eq(20)
+		expect(persona1.sexo).to eq(true)
+	end
+
+	it "crea correctamente la clase Paciente" do
+		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+		expect(paciente1.nombre).to eq("Jorge")
+		expect(paciente1.apellidos).to eq("González Cabrera")
+		expect(paciente1.edad).to eq(20)
+		expect(paciente1.sexo).to eq(true)
+		expect(paciente1.peso).to eq(70)
+		expect(paciente1.talla).to eq(1.85)
+		expect(paciente1.cintura).to eq(80)
+		expect(paciente1.cadera).to eq(90)
+		expect(paciente1.tricipital).to eq([50,48,53])
+		expect(paciente1.bicipital).to eq([20,19,17])
+		expect(paciente1.subescapular).to eq([84,87,85])
+		expect(paciente1.suprailíaco).to eq([30,34,33])
+	end
+
+	it "calcula correctamente los valores antropométricos del paciente" do
+		prueba1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+        	prueba2 = Paciente.new("Jorge","González Cabrera",66.424,1.9,20,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+        	prueba3 = Paciente.new("Jorge","González Cabrera",86.81416,1.78,20,true,88.83,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+        	prueba4 = Paciente.new("Jorge","González Cabrera",86.60512,1.64,20,true,93.5,85,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+        	prueba5 = Paciente.new("Jorge","González Cabrera",120.710637,1.77,20,false,75.17,102,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+        	prueba6 = Paciente.new("Jorge","González Cabrera",147.72492,1.86,20,false,75.7152,95.6,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+        	prueba7 = Paciente.new("Jorge","González Cabrera",70,1.85,20,false,0.73863,0.87,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+
+		expect(prueba1.imc_s).to eq("20.45 (Adecuado)")
+		expect(prueba2.imc_s).to eq("18.4 (Bajo peso)")
+		expect(prueba3.imc_s).to eq("27.4 (Sobrepeso)")
+		expect(prueba4.imc_s).to eq("32.2 (Obesidad grado 1)")
+		expect(prueba5.imc_s).to eq("38.53 (Obesidad grado 2)")
+		expect(prueba6.imc_s).to eq("42.7 (Obesidad grado 3)")
+		
+		expect(prueba1.grasa.round(2)).to eq(12.94)
+
+		expect(prueba1.rcc_s).to eq("0.889 (Moderado)")
+		expect(prueba2.rcc_s).to eq("0.843 (Bajo)")
+		expect(prueba3.rcc_s).to eq("0.987 (Alto)")
+		expect(prueba4.rcc_s).to eq("1.1 (Muy alto)")
+		expect(prueba5.rcc_s).to eq("0.737 (Bajo)")
+		expect(prueba6.rcc_s).to eq("0.792 (Moderado)")
+		expect(prueba7.rcc_s).to eq("0.849 (Alto)")
+
+		expect(prueba1.plieguesCutaneos).to eq([50.33,18.67,85.33,32.33])
+	end
+
+	it "muestra correctamente los datos" do
+		persona1 = Individuo.new("Jorge","González Cabrera", 20, true)
+		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+
+		expect(persona1.to_s).to eq("\n  Jorge González Cabrera, hombre, 20 años")
+		expect(paciente1.to_s).to eq("\n  Jorge González Cabrera, hombre, 20 años" +
+					       "\n  Datos antropométricos" +
+					       "\tPeso: 70kg\tTalla: 1.85m" +
+					       "\tIMC: 20.45 (Adecuado)\tPorcentaje de grasa: 12.94%" +
+					       "\n  Circunferencias" +
+					       "\tCintura: 80 cm\tCadera: 90 cm" +
+					       "\tRCC: 0.889 (Moderado)" +
+					       "\n  Medidas cutáneas del tricipital" +
+					       "\tMedida  1: 50cm" +
+					       "\tMedida  2: 48cm" +
+					       "\tMedida  3: 53cm" +
+					       "\tMedia: 50.33cm" +
+					       "\n  Medidas cutáneas del bicipital" +
+					       "\tMedida  1: 20cm" +
+                                               "\tMedida  2: 19cm" +
+                                               "\tMedida  3: 17cm" +
+					       "\tMedia: 18.67cm" +
+					       "\n  Medidas cutáneas del subescapular" +
+					       "\tMedida  1: 84cm" +
+                                               "\tMedida  2: 87cm" +
+                                               "\tMedida  3: 85cm" +
+					       "\tMedia: 85.33cm" +
+					       "\n  Medidas cutáneas del suprailíaco" +
+					       "\tMedida  1: 30cm" +
+                                               "\tMedida  2: 34cm" +
+                                               "\tMedida  3: 33cm" +
+					       "\tMedia: 32.33cm")
+	end
+
+	it "clasifica correctamente a los pacientes según su IMC" do
+		pacientes = List.new
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",66.424,1.9,20,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",86.81416,1.78,20,true,88.83,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",86.60512,1.64,20,true,93.5,85,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",100.710637,1.77,20,false,75.17,102,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",147.72492,1.86,20,false,75.7152,95.6,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",68,1.85,20,false,0.73863,0.87,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
+
+		pesosBajos = []
+		adecuados = []
+		sobrepeso = []
+		obesidadGradoUno = []
+		obesidadGradoDos = []
+		obesidadGradoTres = []
+
+		iterator = pacientes.head
+		while iterator != nil do
+			valor = iterator.value.imc
+			if valor < 18.5
+				pesosBajos.push(valor)
+			elsif valor >= 18.5 && valor < 25
+				adecuados.push(valor)
+			elsif valor >= 25 && valor < 30
+				sobrepeso.push(valor)
+			elsif valor >= 30 && valor < 35
+				obesidadGradoUno.push(valor)
+			elsif valor >= 35 && valor < 40
+				obesidadGradoDos.push(valor)
+			elsif valor >= 40
+				obesidadGradoTres.push(valor)
+			end
+			iterator = iterator.next
+		end
+		expect(pesosBajos).to eq([18.4])
+		expect(adecuados).to eq([20.45,19.87])
+		expect(sobrepeso).to eq([27.4])
+		expect(obesidadGradoUno).to eq([32.2,32.15])
+		expect(obesidadGradoDos).to eq([])
+		expect(obesidadGradoTres).to eq([42.7])
+
+	end
+
+	it "comprobación de clases, tipos y pertenencia a una jerarquía" do
+		persona1 = Individuo.new("Jorge","González Cabrera", 20, true)
+		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+
+		expect(paciente1.class).to eq(Paciente)
+		expect(paciente1.class).to_not eq(Individuo)
+		expect(persona1.class).to eq(Individuo)
+		expect(persona1.class).to_not eq(Paciente)
+
+		expect(paciente1.respond_to?('imc_s')).to eq(true)
+		expect(persona1.respond_to?('imc_s')).to eq(false)
+		expect(paciente1.respond_to?('rcc_s')).to eq(true)
+		expect(persona1.respond_to?('rcc_s')).to eq(false)
+		expect(paciente1.respond_to?('to_s')).to eq(true)
+		expect(persona1.respond_to?('to_s')).to eq(true)
+
+		expect(paciente1.class.superclass).to eq(Individuo)
+		expect(paciente1.class.ancestors.include?Individuo).to eq(true)
+		expect(paciente1.class.ancestors.include?Object).to eq(true)
+		expect(paciente1.class.ancestors.include?BasicObject).to eq(true)
+	end	
+
 end
