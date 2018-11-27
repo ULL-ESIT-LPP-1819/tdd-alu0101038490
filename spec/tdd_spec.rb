@@ -454,6 +454,19 @@ RSpec.describe List do
 		lista.pop_back
 		lista.pop_back
 		lista.pop_back
+
+		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+		paciente2 = Paciente.new("Jorge","González Cabrera",66.424,1.9,20,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+		paciente3 = Paciente.new("Jorge","González Cabrera",86.81416,1.78,20,true,88.83,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+		lista.push_back(paciente1)
+		lista.push_back(paciente2)
+		lista.push_back(paciente3)
+
+		expect(lista.collect {"prueba"}).to eq(["prueba","prueba","prueba"])
+		expect(lista.select { |aux| aux.peso >= 70.0}).to eq([paciente1,paciente3])
+		expect(lista.max).to eq(paciente3)
+		expect(lista.min).to eq(paciente2)
+		expect(lista.sort).to eq([paciente2,paciente1,paciente3])
 	end	
 end
 
