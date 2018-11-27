@@ -146,6 +146,18 @@ RSpec.describe Etiqueta do
 		expect(prueba.class.superclass).to eq(Object)
 		expect(prueba.class.ancestors.include?Object).to eq(true)
 		expect(prueba.class.ancestors.include?BasicObject).to eq(true)
+	end
+
+	it "se compara correctamente." do
+		etiqueta1 = Etiqueta.new("Caramelos",6.6,3.9,84.0,70.0,0.8,0.0,0.4,2.3,0.0,0.0,0.0,0.0,0.0)
+                etiqueta2 = Etiqueta.new("Galletas saladas",19.0,1.9,67.0,7.1,8.3,1.75,0.0,0.0,0.0,0.0,2.4,0.0,0.0)
+                etiqueta3 = Etiqueta.new("Barritas",14.0,8.8,71.0,40.0,5.4,0.39,4.2,0.8,0.0,0.0,0.0,0.0,0.0)
+		expect(etiqueta1 < etiqueta2).to eq(false)
+		expect(etiqueta1 <= etiqueta2).to eq(false)
+		expect(etiqueta1 == etiqueta2).to eq(false)
+		expect(etiqueta1 > etiqueta2).to eq(true)
+		expect(etiqueta1 >= etiqueta2).to eq(true)
+		expect(etiqueta3.between?(etiqueta1,etiqueta2)).to eq(true)
 	end	
 end
 
