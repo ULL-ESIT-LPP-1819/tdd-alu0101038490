@@ -1,5 +1,7 @@
 class List
 
+	include Enumerable
+
 	Node = Struct.new(:value, :next, :prev)
 
 	attr_reader :tail, :head, :size
@@ -107,6 +109,14 @@ class List
 
 	def isEmpty
 		return size == 0
+	end
+
+	def each
+		iterator = head
+		while iterator != nil do
+			yield iterator.value
+			iterator = iterator.next
+		end
 	end
 
 end
