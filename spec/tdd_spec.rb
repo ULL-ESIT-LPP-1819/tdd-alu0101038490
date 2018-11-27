@@ -434,6 +434,26 @@ RSpec.describe List do
 		expect(prueba.class.superclass).to eq(Object)
 		expect(prueba.class.ancestors.include?Object).to eq(true)
 		expect(prueba.class.ancestors.include?BasicObject).to eq(true)
+	end
+
+	it "se hacen enumeraciones correctamente." do
+		lista = List.new
+		etiqueta1 = Etiqueta.new("Caramelos",6.6,3.9,84.0,70.0,0.8,0.0,0.4,2.3,0.0,0.0,0.0,0.0,0.0)
+                etiqueta2 = Etiqueta.new("Galletas saladas",19.0,1.9,67.0,7.1,8.3,1.75,0.0,0.0,0.0,0.0,2.4,0.0,0.0)
+                etiqueta3 = Etiqueta.new("Barritas",14.0,8.8,71.0,40.0,5.4,0.39,4.2,0.8,0.0,0.0,0.0,0.0,0.0)
+		lista.push_back(etiqueta1)
+		lista.push_back(etiqueta2)
+		lista.push_back(etiqueta3)
+
+		expect(lista.collect {"prueba"}).to eq(["prueba","prueba","prueba"])
+		expect(lista.select { |aux| aux.grasas > 10.0}).to eq([etiqueta2,etiqueta3])
+		expect(lista.max).to eq(etiqueta1)
+		expect(lista.min).to eq(etiqueta2)
+		expect(lista.sort).to eq([etiqueta2,etiqueta3,etiqueta1])
+
+		lista.pop_back
+		lista.pop_back
+		lista.pop_back
 	end	
 end
 
