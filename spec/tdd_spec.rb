@@ -591,6 +591,18 @@ RSpec.describe "Pruebas sobre la herencia" do
 		expect(paciente1.class.ancestors.include?Individuo).to eq(true)
 		expect(paciente1.class.ancestors.include?Object).to eq(true)
 		expect(paciente1.class.ancestors.include?BasicObject).to eq(true)
+	end
+
+	it "se compara correctamente." do
+		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+		paciente2 = Paciente.new("Jorge","González Cabrera",66.424,1.9,20,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+		paciente3 = Paciente.new("Jorge","González Cabrera",86.81416,1.78,20,true,88.83,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+		expect(paciente1 < paciente2).to eq(false)
+		expect(paciente1 <= paciente2).to eq(false)
+		expect(paciente1 == paciente2).to eq(false)
+		expect(paciente1 > paciente2).to eq(true)
+		expect(paciente1 >= paciente2).to eq(true)
+		expect(paciente1.between?(paciente2,paciente3)).to eq(true)
 	end	
 
 end
