@@ -1,3 +1,40 @@
+# Clase para describir el valor nutricional de un alimento.
+# 
+# @author Jorge González Cabrera
+#
+# @!attribute [rw] nombre
+#   @return [String] el nombre del alimento
+# @!attribute [rw] grasas
+#   @return [Float] la cantidad de grasa en 100 gramos de alimento
+# @!attribute [rw] grasasMonoinsaturadas
+#   @return [Float] la cantidad de grasas monoinsaturadas en 100 gramos de alimento
+# @!attribute [rw] grasasPoliinsaturadas
+#   @return [Float] la cantidad de grasas poliinsaturadas en 100 gramos de alimento
+# @!attribute [rw] grasasSaturadas
+#   @return [Float] la cantidad de grasas saturadas en 100 gramos de alimento
+# @!attribute [rw] hidratosDeCarbono
+#   @return [Float] la cantidad de hidratos de carbono en 100 gramos de alimento
+# @!attribute [rw] azucares
+#   @return [Float] la cantidad de azucares en 100 gramos de alimento
+# @!attribute [rw] proteinas
+#   @return [Float] la cantidad de proteinas en 100 gramos de alimento
+# @!attribute [rw] sal
+#   @return [Float] la cantidad de sal en 100 gramos de alimento
+# @!attribute [rw] polialcoholes
+#   @return [Float] la cantidad de polialcoholes en 100 gramos de alimento
+# @!attribute [rw] almidon
+#   @return [Float] la cantidad de almidon en 100 gramos de alimento
+# @!attribute [rw] fibraAlimentaria
+#   @return [Float] la cantidad de fibra alimentaria en 100 gramos de alimento
+# @!attribute [rw] vitaminas
+#   @return [Float] la cantidad de vitaminas en 100 gramos de alimento
+# @!attribute [rw] minerales
+#   @return [Float] la cantidad de minerales en 100 gramos de alimento
+# @!attribute [r] porciones
+#   @return [Fixnum] la cantidad de porciones en las que se divide el alimento
+# @!attribute [r] cantidadPorPorcion
+#   @return [Float] gramos que contiene cada porción
+
 class Etiqueta 
 
 	include Comparable
@@ -9,6 +46,9 @@ class Etiqueta
 
 	attr_reader :porciones, :cantidadPorPorcion
 
+	# Crea una etiqueta sin porciones con todos los datos dados en gramos / 100 gramos de alimento.
+	#
+	# @return [Etiqueta]
 	def initialize(nombre, grasas, grasasSaturadas, hidratosDeCarbono, 
                 azucares, proteinas, sal, grasasMonoinsaturadas, 
                 grasasPoliinsaturadas, polialcoholes, almidon, fibraAlimentaria, 
@@ -33,64 +73,111 @@ class Etiqueta
 		@cantidadPorPorcion = 100.0
 	end
 
+	# Divide el alimento en porciones.
+	#
+	# @param porciones [Fixnum] la cantidad de porciones en la que se divide.
+	# @param cantidadPorPorcion [Float] gramos de cada porción.
+	# @return [nil]
 	def dividirEnPorciones (porciones, cantidadPorPorcion)
 		@porciones = porciones
 		@cantidadPorPorcion = cantidadPorPorcion
+		nil
 	end
 
+	# Calcula la cantidad de grasas que contiene cada porción si esta dividido en porciones.
+	#
+	# @return [Float] cantidad de grasas por porción, o por 100 gramos de alimento si no está divido en porciones.
 	def grasasPorPorcion 
 		(@grasas * (@cantidadPorPorcion / 100)).round(2)
 	end
 
+	# Calcula la cantidad de grasas saturadas que contiene cada porción si esta dividido en porciones.
+	#
+	# @return [Float] cantidad de grasas saturadas por porción, o por 100 gramos de alimento si no está divido en porciones.
 	def grasasSaturadasPorPorcion 
 		(@grasasSaturadas * (@cantidadPorPorcion / 100)).round(2)
 	end
 	
+	# Calcula la cantidad de hidratos de carbono que contiene cada porción si esta dividido en porciones.
+	#
+	# @return [Float] cantidad de hidratos de carbono por porción, o por 100 gramos de alimento si no está divido en porciones.
 	def hidratosDeCarbonoPorPorcion 
 		(@hidratosDeCarbono * (@cantidadPorPorcion / 100)).round(2)
 	end
 
+	# Calcula la cantidad de azucares que contiene cada porción si esta dividido en porciones.
+	#
+	# @return [Float] cantidad de azucares por porción, o por 100 gramos de alimento si no está divido en porciones.
 	def azucaresPorPorcion 
 		(@azucares * (@cantidadPorPorcion / 100)).round(2)
 	end
 
+	# Calcula la cantidad de proteinas que contiene cada porción si esta dividido en porciones.
+	#
+	# @return [Float] cantidad de proteinas por porción, o por 100 gramos de alimento si no está divido en porciones.
 	def proteinasPorPorcion 
 		(@proteinas * (@cantidadPorPorcion / 100)).round(2)
 	end
 
+	# Calcula la cantidad de sal que contiene cada porción si esta dividido en porciones.
+	#
+	# @return [Float] cantidad de sal por porción, o por 100 gramos de alimento si no está divido en porciones.
 	def salPorPorcion 
 		(@sal * (@cantidadPorPorcion / 100)).round(2)
 	end
 
+	# Calcula la cantidad de grasas monoinsaturadas que contiene cada porción si esta dividido en porciones.
+	#
+	# @return [Float] cantidad de grasas monoinsaturadas por porción, o por 100 gramos de alimento si no está divido en porciones.
 	def grasasMonoinsaturadasPorPorcion 
 		(@grasasMonoinsaturadas * (@cantidadPorPorcion / 100)).round(2)
 	end
 
+	# Calcula la cantidad de grasas poliinsaturadas que contiene cada porción si esta dividido en porciones.
+	#
+	# @return [Float] cantidad de grasas poliinsaturadas por porción, o por 100 gramos de alimento si no está divido en porciones.
 	def grasasPoliinsaturadasPorPorcion 
 		(@grasasPoliinsaturadas * (@cantidadPorPorcion / 100)).round(2)
 	end
 
+	# Calcula la cantidad de polialcoholes que contiene cada porción si esta dividido en porciones.
+	#
+	# @return [Float] cantidad de polialcoholes por porción, o por 100 gramos de alimento si no está divido en porciones.
 	def polialcoholesPorPorcion 
 		(@polialcoholes * (@cantidadPorPorcion / 100)).round(2)
 	end
 
+	# Calcula la cantidad de almidón que contiene cada porción si esta dividido en porciones.
+	#
+	# @return [Float] cantidad de almidón por porción, o por 100 gramos de alimento si no está divido en porciones.
 	def almidonPorPorcion 
 		(@almidon * (@cantidadPorPorcion / 100)).round(2)
 	end
 
+	# Calcula la cantidad de fibra alimentaria que contiene cada porción si esta dividido en porciones.
+	#
+	# @return [Float] cantidad de fibra alimentaria por porción, o por 100 gramos de alimento si no está divido en porciones.
 	def fibraAlimentariaPorPorcion 
 		(@fibraAlimentaria * (@cantidadPorPorcion / 100)).round(2)
 	end
 
+	# Calcula la cantidad de vitaminas que contiene cada porción si esta dividido en porciones.
+	#
+	# @return [Float] cantidad de vitaminas por porción, o por 100 gramos de alimento si no está divido en porciones.
 	def vitaminasPorPorcion 
 		(@vitaminas * (@cantidadPorPorcion / 100)).round(2)
 	end
 
+	# Calcula la cantidad de minerales que contiene cada porción si esta dividido en porciones.
+	#
+	# @return [Float] cantidad de minerales por porción, o por 100 gramos de alimento si no está divido en porciones.
 	def mineralesPorPorcion 
 		(@minerales * (@cantidadPorPorcion / 100)).round(2)
 	end
 
-	#Devuelve el valor energético respecto a los 100g y respecto a la cantidad por porción si las hay.
+	# Devuelve el valor energético en KJ.
+	#
+	# @return [Float,Array] valor energético en KJ respecto a los 100 gramos. También respecto a la cantidad por porción si las hay.
 	def valorEnergeticoEnKJ
 		valor = 0.0
 		valor += (37 * @grasas)
@@ -107,6 +194,9 @@ class Etiqueta
 		end	
 	end
 
+	# Devuelve el valor energético en Kcal.
+	#
+	# @return [Float,Array] valor energético en Kcal respecto a los 100 gramos. También respecto a la cantidad por porción si las hay.
 	def valorEnergeticoEnKcal
 		valor = valorEnergeticoEnKJ
 		if valor.class == Array
@@ -116,7 +206,9 @@ class Etiqueta
 		end
 	end
 
-	#Devuelve el porcentaje sobre los 100g y también sobre la cantidad por porción si las hay (igual que los siguientes métodos).
+	# Calcula el porcentaje del valor energético que aporta el alimento sobre el recomendado por día.
+	#
+	# @return [Float,Array] el porcentaje de valor energético sobre los 100 gramos y también sobre la cantidad por porción si las hay.
 	def porcentajeValorEnergetico
 		valor = valorEnergeticoEnKcal
 		if valor.class == Array
@@ -126,6 +218,9 @@ class Etiqueta
 		end
 	end
 
+	# Calcula el porcentaje de grasa que aporta el alimento sobre el recomendado por día.
+	#
+	# @return [Float,Array] el porcentaje de grasa sobre los 100 gramos y también sobre la cantidad por porción si las hay.
 	def porcentajeGrasas
 		if @porciones > 1
 			gramosPorPorcion = @grasas * (@cantidadPorPorcion / 100)
@@ -135,6 +230,9 @@ class Etiqueta
 		end
 	end
 
+	# Calcula el porcentaje de grasas saturadas que aporta el alimento sobre el recomendado por día.
+	#
+	# @return [Float,Array] el porcentaje de grasas saturadas sobre los 100 gramos y también sobre la cantidad por porción si las hay.
 	def porcentajeSaturadas
 		if @porciones > 1
 			gramosPorPorcion = @grasasSaturadas * (@cantidadPorPorcion / 100)
@@ -144,6 +242,9 @@ class Etiqueta
 		end
 	end
 
+	# Calcula el porcentaje de hidratos de carbono que aporta el alimento sobre el recomendado por día.
+	#
+	# @return [Float,Array] el porcentaje de hidratos de carbono sobre los 100 gramos y también sobre la cantidad por porción si las hay.
 	def porcentajeHidratos 
 		if @porciones > 1
 			gramosPorPorcion = @hidratosDeCarbono * (@cantidadPorPorcion / 100)
@@ -153,6 +254,9 @@ class Etiqueta
 		end
 	end
 
+	# Calcula el porcentaje de azucares que aporta el alimento sobre el recomendado por día.
+	#
+	# @return [Float,Array] el porcentaje de azucares sobre los 100 gramos y también sobre la cantidad por porción si las hay.
 	def porcentajeAzucares
 		if @porciones > 1
 			gramosPorPorcion = @azucares * (@cantidadPorPorcion / 100)
@@ -162,6 +266,9 @@ class Etiqueta
 		end
 	end
 
+	# Calcula el porcentaje de proteinas que aporta el alimento sobre el recomendado por día.
+	#
+	# @return [Float,Array] el porcentaje de proteinas sobre los 100 gramos y también sobre la cantidad por porción si las hay.
 	def porcentajeProteinas
 		if @porciones > 1
 			gramosPorPorcion = @proteinas * (@cantidadPorPorcion / 100)
@@ -171,6 +278,9 @@ class Etiqueta
 		end
 	end
 
+	# Calcula el porcentaje de sal que aporta el alimento sobre el recomendado por día.
+	#
+	# @return [Float,Array] el porcentaje de sal sobre los 100 gramos y también sobre la cantidad por porción si las hay.
 	def porcentajeSal
 		if @porciones > 1
 			gramosPorPorcion = @sal * (@cantidadPorPorcion / 100)
@@ -180,6 +290,9 @@ class Etiqueta
 		end
 	end
 	
+	# Formatea los datos en forma de etiqueta, incluyendo los valores por porciones si las hubiera.
+	#
+	# @return [String] la etiqueta formateada.
 	def to_s
 		if @porciones <= 1
 			"\tPor 100g\tIR (por 100g)\n" +
@@ -216,6 +329,10 @@ class Etiqueta
 		end
 	end
 
+	# Método necesario para que se pueda comparar la clase, requerido por el módulo Comparable.
+	#
+	# @param another [Etiqueta] etiqueta con la que se va a comparar.
+	# @return [true,false] el resultado de la comparación.
 	def <=>(another)
 		if another.class == Etiqueta
 			valor1 = valorEnergeticoEnKJ
