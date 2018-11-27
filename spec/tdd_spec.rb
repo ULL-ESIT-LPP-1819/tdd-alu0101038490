@@ -157,7 +157,7 @@ RSpec.describe Etiqueta do
 		expect(etiqueta1 == etiqueta2).to eq(false)
 		expect(etiqueta1 > etiqueta2).to eq(true)
 		expect(etiqueta1 >= etiqueta2).to eq(true)
-		expect(etiqueta3.between?(etiqueta1,etiqueta2)).to eq(true)
+		expect(etiqueta3.between?(etiqueta2,etiqueta1)).to eq(true)
 	end	
 end
 

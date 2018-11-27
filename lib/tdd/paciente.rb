@@ -1,5 +1,7 @@
 class Paciente < Individuo
 
+	include Comparable
+
 	attr_accessor :peso, :talla, :cintura, :cadera, :tricipital, :bicipital, :subescapular, :suprailíaco
 
 	def initialize(nombre,apellidos,peso,talla,edad,sexo,cintura,cadera,tricipital,bicipital,subescapular,suprailíaco)
@@ -152,5 +154,9 @@ class Paciente < Individuo
 		"\tCintura: #{@cintura} cm\tCadera: #{@cadera} cm" +
 		"\tRCC: #{rcc_s}" +
 		pliegues_s
+	end
+
+	def <=>(another)
+		imc <=> another.imc
 	end
 end

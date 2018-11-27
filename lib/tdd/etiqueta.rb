@@ -1,5 +1,7 @@
 class Etiqueta 
 
+	include Comparable
+
 	attr_accessor :nombre, :grasas, :grasasMonoinsaturadas, :grasasSaturadas, :hidratosDeCarbono, 
 		:azucares, :proteinas, :sal, :grasasMonoinsaturadas,
 	       	:grasasPoliinsaturadas, :polialcoholes, :almidon, :fibraAlimentaria, 
@@ -213,5 +215,18 @@ class Etiqueta
                         "Minerales:\t#{@minerales}g\t-\t#{@minerales}g\t-\n"
 		end
 	end
+
+	def <=>(another)
+		if another.class == Etiqueta
+			valor1 = valorEnergeticoEnKJ
+			valor1 = valor1[0] if valor1.class == Array
+			valor2 = another.valorEnergeticoEnKJ
+			valor2 = valor2[0] if valor2.class == Array
+			valor1 <=> valor2
+		else
+			return false
+		end
+	end
+
 
 end
