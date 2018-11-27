@@ -1,9 +1,33 @@
+# Clase para describir el valor nutricional de un alimento.
+# 
+# @author Jorge González Cabrera
+#
+# @!attribute [rw] peso
+#   @return [Float] el peso del paciente en kilogramos.
+# @!attribute [rw] talla
+#   @return [Float] la altura del paciente en metros.
+# @!attribute [rw] cintura
+#   @return [Float] medida de la cintura en centímetros.
+# @!attribute [rw] cadera
+#   @return [Float] medida de la cadera en centímetros.
+# @!attribute [rw] tricipital
+#   @return [Array<Float>] medidas tricipitales en centímetros.
+# @!attribute [rw] bicipital
+#   @return [Array<Float>] medidas bicipitales en centímetros.
+# @!attribute [rw] subescapular
+#   @return [Array<Float>] medidas subescapulares en centímetros.
+# @!attribute [rw] suprailiaco
+#   @return [Array<Float>] medidas suprailiacas en centímetros.
+
 class Paciente < Individuo
 
 	include Comparable
 
 	attr_accessor :peso, :talla, :cintura, :cadera, :tricipital, :bicipital, :subescapular, :suprailíaco
 
+	# Crea un objeto de tipo paciente con todos los datos.
+	#
+	# @return [Paciente]
 	def initialize(nombre,apellidos,peso,talla,edad,sexo,cintura,cadera,tricipital,bicipital,subescapular,suprailíaco)
         	super(nombre,apellidos,edad,sexo)
 
@@ -17,11 +41,17 @@ class Paciente < Individuo
         	@suprailíaco = suprailíaco
     	end
 
+	# Calcula el índice de masa corporal del paciente.
+	#
+	# @return [Float] el IMC del paciente.
 	def imc
 		valor = peso / (talla * talla)
 		valor.round(2)
 	end
 
+	# Calcula el índice de masa corporal del paciente y lo clasifica.
+	#
+	# @return [String] IMC formateado.
 	def imc_s
 		valor = imc
 		if valor < 18.5
@@ -39,15 +69,24 @@ class Paciente < Individuo
 		end
 	end
 
+	# Calcula la cantidad de grasa del paciente.
+	#
+	# @return [Float] la cantidad de grasa del paciente.
 	def grasa
 		1.2 * imc + 0.23 * @edad - 10.8 * ( sexo ? 1 : 0) - 5.4
 	end
 
+	# Calcula la relación cintura-cadera del paciente.
+	#
+	# @return [Float] la relación cintura-cadera del paciente.
 	def rcc
 		valor = @cintura.to_f / @cadera.to_f
 		return valor.round(3)
 	end
 
+	# Calcula la relación cintura-cadera del paciente y lo clasifica.
+	#
+	# @return [String] RCC formateado.
 	def rcc_s
 		valor = rcc
 		if sexo
@@ -75,6 +114,9 @@ class Paciente < Individuo
 		end
 	end
 
+	# Calcula la media de todas las medidas tricipitales dadas.
+	#
+	# @return [Float] media de medidas tricipitales.
 	def mediaTricipital
 		media = 0.0
 		@tricipital.length.times do |i|
@@ -84,6 +126,9 @@ class Paciente < Individuo
 		media.round(2)
 	end
 
+	# Calcula la media de todas las medidas bicipitales dadas.
+	#
+	# @return [Float] media de medidas bicipitales.
 	def mediaBicipital
 		media = 0.0
 		@bicipital.length.times do |i|
@@ -93,6 +138,9 @@ class Paciente < Individuo
 		media.round(2)
 	end
 
+	# Calcula la media de todas las medidas subescapulares dadas.
+	#
+	# @return [Float] media de medidas subescapulares.
 	def mediaSubescapular
 		media = 0.0
 		@subescapular.length.times do |i|
@@ -102,6 +150,9 @@ class Paciente < Individuo
 		media.round(2)
 	end
 
+	# Calcula la media de todas las medidas suprailiacas dadas.
+	#
+	# @return [Float] media de medidas suprailiacas.
 	def mediaSuprailiaco
 		media = 0.0
 		@suprailíaco.length.times do |i|
@@ -111,6 +162,9 @@ class Paciente < Individuo
 		media.round(2)
 	end
 
+	# Calcula todas las medias de las medidas tricipitales, bicipitales, subescapulares y suprailiacas.
+	#
+	# @return [Array<Float>] media de medidas.
 	def plieguesCutaneos
 		pliegues = []
 		pliegues << mediaTricipital
@@ -120,6 +174,9 @@ class Paciente < Individuo
 		return pliegues
 	end
 
+	# Formatea los datos en forma de parte médico con todos los datos del paciente.
+	#
+	# @return [String] los datos del paciente formateados.
 	def to_s
 		medias = plieguesCutaneos
 		pliegues_s = "\n  Medidas cutáneas del tricipital"
@@ -156,6 +213,10 @@ class Paciente < Individuo
 		pliegues_s
 	end
 
+	# Método necesario para que se pueda comparar la clase, requerido por el módulo Comparable.
+	#
+	# @param another [Paciente] paciente con la que se va a comparar.
+	# @return [true,false] el resultado de la comparación.
 	def <=>(another)
 		imc <=> another.imc
 	end
