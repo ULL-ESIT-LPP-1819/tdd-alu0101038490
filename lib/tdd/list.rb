@@ -1,3 +1,14 @@
+# Contenedor que sigue la filosofía de lista doblemente enlazada.
+# 
+# @author Jorge González Cabrera
+#
+# @!attribute [r] tail
+#   @return [Node] último elemento de la lista
+# @!attribute [r] head
+#   @return [Node] primer elemento de la lista
+# @!attribute [r] size
+#   @return [Fixnum] cantidad de elementos en la lista
+
 class List
 
 	include Enumerable
@@ -6,12 +17,18 @@ class List
 
 	attr_reader :tail, :head, :size
 
+	# Crea una lista vacía.
+	#
+	# @return [List]
 	def initialize
 		@tail = nil
 		@head = nil
 		@size = 0
 	end
 
+	# Inserta un valor al final de la lista.
+	#
+	# @param valor valor o nodo que se introduce en la lista.
 	def push_back(valor)
 		if valor.class == Node
 			addedNode = valor
@@ -27,6 +44,9 @@ class List
 		return nil
 	end
 
+	# Inserta un valor al principio de la lista.
+	#
+	# @param valor valor o nodo que se introduce en la lista.
 	def push_front(valor)
 		if valor.class == Node
 			addedNode = valor
@@ -42,6 +62,7 @@ class List
 		return nil
 	end
 
+	# Elimina un elemento del final de la lista.
 	def pop_back
 		@tail = @tail.prev unless @tail == nil
 		@tail.next = nil unless @tail == nil
@@ -52,6 +73,7 @@ class List
 		return nil
 	end
 
+	# Elimina un elemento del principio de la lista.
 	def pop_front
 		@head = @head.next unless @head == nil
 		@head.prev = nil unless @head == nil
@@ -62,6 +84,10 @@ class List
 		return nil
 	end
 
+	# Inserta un elemento en una posición concreta de la lista.
+	#
+	# @param position [Fixnum] posición en la que se quiere insertar el elemento.
+	# @param valor valor o nodo que se quiere incluir.
 	def insert (position, valor)
 		if position.is_a? Integer
 			if position == 0 
@@ -88,6 +114,9 @@ class List
 		return nil
 	end
 
+	# Elimina un elemento en una posición concreta de la lista.
+	#
+	# @param position [Fixnum] posición del elemento que se quiere eliminar.
 	def remove (position)
 		if position.is_a? Integer
 			if position == 0 
@@ -107,10 +136,14 @@ class List
 		return nil
 	end
 
+	# Permite saber si la lista está vacía.
+	#
+	# @return [true,false] devuelve 'true' si la lista está vacía y false en caso contrario.
 	def isEmpty
 		return size == 0
 	end
 
+	# Método necesario para que se pueda 'enumerar' la clase, requerido por el módulo Enumerable.
 	def each
 		iterator = head
 		while iterator != nil do
