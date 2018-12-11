@@ -18,17 +18,19 @@
 #   @return [Array<Float>] medidas subescapulares en centímetros.
 # @!attribute [rw] suprailiaco
 #   @return [Array<Float>] medidas suprailiacas en centímetros.
+# @!attribute [rw] factorActividadFisica
+#   @return [0.0,0.12,0.27,0.54] factor de actividad física.
 
 class Paciente < Individuo
 
 	include Comparable
 
-	attr_accessor :peso, :talla, :cintura, :cadera, :tricipital, :bicipital, :subescapular, :suprailíaco
+	attr_accessor :peso, :talla, :cintura, :cadera, :tricipital, :bicipital, :subescapular, :suprailíaco, :factorActividadFisica
 
 	# Crea un objeto de tipo paciente con todos los datos.
 	#
 	# @return [Paciente]
-	def initialize(nombre,apellidos,peso,talla,edad,sexo,cintura,cadera,tricipital,bicipital,subescapular,suprailíaco)
+	def initialize(nombre,apellidos,peso,talla,edad,sexo,cintura,cadera,tricipital,bicipital,subescapular,suprailíaco, factorActividadFisica)
         	super(nombre,apellidos,edad,sexo)
 
         	@peso = peso
@@ -39,6 +41,7 @@ class Paciente < Individuo
         	@bicipital = bicipital
         	@subescapular = subescapular
         	@suprailíaco = suprailíaco
+		@factorActividadFisica = factorActividadFisica
     	end
 
 	# Calcula el índice de masa corporal del paciente.
@@ -219,5 +222,16 @@ class Paciente < Individuo
 	# @return [true,false] el resultado de la comparación.
 	def <=>(another)
 		imc <=> another.imc
+	end
+
+	# Método para calcular el gasto energético total (por día) en calorías del paciente.
+	#
+	# @return [Float] el gasto energético total.
+	def gastoEnergeticoTotal
+		if sexo
+			return (10 * @peso + 6.25 * @talla - 5 * @edad + 5) + ((10 * @peso + 6.25 * @talla - 5 * @edad + 5) * 0.10) + ((10 * @peso + 6.25 * @talla - 5 * @edad + 5) * @factorActividadFisica)
+		else 	
+			return (10 * @peso + 6.25 * @talla - 5 * @edad - 161) + ((10 * @peso + 6.25 * @talla - 5 * @edad - 161) * 0.10) + ((10 * @peso + 6.25 * @talla - 5 * @edad + -161) * @factorActividadFisica)
+		end
 	end
 end
