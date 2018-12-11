@@ -455,9 +455,9 @@ RSpec.describe List do
 		lista.pop_back
 		lista.pop_back
 
-		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
-		paciente2 = Paciente.new("Jorge","González Cabrera",66.424,1.9,20,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
-		paciente3 = Paciente.new("Jorge","González Cabrera",86.81416,1.78,20,true,88.83,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
+		paciente2 = Paciente.new("Jorge","González Cabrera",66.424,1.9,20,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
+		paciente3 = Paciente.new("Jorge","González Cabrera",86.81416,1.78,20,true,88.83,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
 		lista.push_back(paciente1)
 		lista.push_back(paciente2)
 		lista.push_back(paciente3)
@@ -482,7 +482,7 @@ RSpec.describe "Pruebas sobre la herencia" do
 	end
 
 	it "crea correctamente la clase Paciente" do
-		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
 		expect(paciente1.nombre).to eq("Jorge")
 		expect(paciente1.apellidos).to eq("González Cabrera")
 		expect(paciente1.edad).to eq(20)
@@ -498,13 +498,13 @@ RSpec.describe "Pruebas sobre la herencia" do
 	end
 
 	it "calcula correctamente los valores antropométricos del paciente" do
-		prueba1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
-        	prueba2 = Paciente.new("Jorge","González Cabrera",66.424,1.9,20,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
-        	prueba3 = Paciente.new("Jorge","González Cabrera",86.81416,1.78,20,true,88.83,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
-        	prueba4 = Paciente.new("Jorge","González Cabrera",86.60512,1.64,20,true,93.5,85,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
-        	prueba5 = Paciente.new("Jorge","González Cabrera",120.710637,1.77,20,false,75.17,102,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
-        	prueba6 = Paciente.new("Jorge","González Cabrera",147.72492,1.86,20,false,75.7152,95.6,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
-        	prueba7 = Paciente.new("Jorge","González Cabrera",70,1.85,20,false,0.73863,0.87,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+		prueba1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
+        	prueba2 = Paciente.new("Jorge","González Cabrera",66.424,1.9,20,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
+        	prueba3 = Paciente.new("Jorge","González Cabrera",86.81416,1.78,20,true,88.83,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
+        	prueba4 = Paciente.new("Jorge","González Cabrera",86.60512,1.64,20,true,93.5,85,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
+        	prueba5 = Paciente.new("Jorge","González Cabrera",120.710637,1.77,20,false,75.17,102,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
+        	prueba6 = Paciente.new("Jorge","González Cabrera",147.72492,1.86,20,false,75.7152,95.6,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
+        	prueba7 = Paciente.new("Jorge","González Cabrera",70,1.85,20,false,0.73863,0.87,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
 
 		expect(prueba1.imc_s).to eq("20.45 (Adecuado)")
 		expect(prueba2.imc_s).to eq("18.4 (Bajo peso)")
@@ -528,7 +528,7 @@ RSpec.describe "Pruebas sobre la herencia" do
 
 	it "muestra correctamente los datos" do
 		persona1 = Individuo.new("Jorge","González Cabrera", 20, true)
-		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
 
 		expect(persona1.to_s).to eq("\n  Jorge González Cabrera, hombre, 20 años")
 		expect(paciente1.to_s).to eq("\n  Jorge González Cabrera, hombre, 20 años" +
@@ -562,13 +562,13 @@ RSpec.describe "Pruebas sobre la herencia" do
 
 	it "clasifica correctamente a los pacientes según su IMC" do
 		pacientes = List.new
-		pacientes.push_back(Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
-		pacientes.push_back(Paciente.new("Jorge","González Cabrera",66.424,1.9,20,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
-		pacientes.push_back(Paciente.new("Jorge","González Cabrera",86.81416,1.78,20,true,88.83,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
-		pacientes.push_back(Paciente.new("Jorge","González Cabrera",86.60512,1.64,20,true,93.5,85,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
-		pacientes.push_back(Paciente.new("Jorge","González Cabrera",100.710637,1.77,20,false,75.17,102,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
-		pacientes.push_back(Paciente.new("Jorge","González Cabrera",147.72492,1.86,20,false,75.7152,95.6,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
-		pacientes.push_back(Paciente.new("Jorge","González Cabrera",68,1.85,20,false,0.73863,0.87,[50,48,53],[20,19,17],[84,87,85],[30,34,33]))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",66.424,1.9,20,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",86.81416,1.78,20,true,88.83,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",86.60512,1.64,20,true,93.5,85,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",100.710637,1.77,20,false,75.17,102,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",147.72492,1.86,20,false,75.7152,95.6,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0))
+		pacientes.push_back(Paciente.new("Jorge","González Cabrera",68,1.85,20,false,0.73863,0.87,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0))
 
 		pesosBajos = []
 		adecuados = []
@@ -606,7 +606,7 @@ RSpec.describe "Pruebas sobre la herencia" do
 
 	it "comprobación de clases, tipos y pertenencia a una jerarquía" do
 		persona1 = Individuo.new("Jorge","González Cabrera", 20, true)
-		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
 
 		expect(paciente1.class).to eq(Paciente)
 		expect(paciente1.class).to_not eq(Individuo)
@@ -627,15 +627,59 @@ RSpec.describe "Pruebas sobre la herencia" do
 	end
 
 	it "se compara correctamente." do
-		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
-		paciente2 = Paciente.new("Jorge","González Cabrera",66.424,1.9,20,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
-		paciente3 = Paciente.new("Jorge","González Cabrera",86.81416,1.78,20,true,88.83,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33])
+		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
+		paciente2 = Paciente.new("Jorge","González Cabrera",66.424,1.9,20,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
+		paciente3 = Paciente.new("Jorge","González Cabrera",86.81416,1.78,20,true,88.83,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
 		expect(paciente1 < paciente2).to eq(false)
 		expect(paciente1 <= paciente2).to eq(false)
 		expect(paciente1 == paciente2).to eq(false)
 		expect(paciente1 > paciente2).to eq(true)
 		expect(paciente1 >= paciente2).to eq(true)
 		expect(paciente1.between?(paciente2,paciente3)).to eq(true)
-	end	
+	end
+
+	it "comprueba correctamente la valoración nutricional." do
+                menu1 = List.new
+		menu2 = List.new
+		menu3 = List.new
+		menu4 = List.new
+		menu5 = List.new
+
+                etiqueta1 = Etiqueta.new("Magdalena",21.7,2.6,54.9,29.0,4.8,1.15,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
+                etiqueta2 = Etiqueta.new("Galletas",12.0,2.9,62.0,23.0,8.0,0.57,5.6,3.5,19.5,19.5,12.0,0.0,0.0)
+                etiqueta3 = Etiqueta.new("Caramelos",6.6,3.9,84.0,70.0,0.8,0.0,0.4,2.3,0.0,0.0,0.0,0.0,0.0)
+                etiqueta4 = Etiqueta.new("Galletas saladas",19.0,1.9,67.0,7.1,8.3,1.75,0.0,0.0,0.0,0.0,2.4,0.0,0.0)
+                etiqueta5 = Etiqueta.new("Barritas",14.0,8.8,71.0,40.0,5.4,0.39,4.2,0.8,0.0,0.0,0.0,0.0,0.0)
+		etiqueta6 = Etiqueta.new("Carne",13.0,4.5,1,0.5,17,0.6,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
+
+		menu1.push_back(etiqueta1)
+		menu1.push_back(etiqueta2)
+
+		menu2.push_back(etiqueta1)
+		menu2.push_back(etiqueta6)
+
+		menu3.push_back(etiqueta1)
+		menu3.push_back(etiqueta2)
+		menu3.push_back(etiqueta3)
+
+		menu4.push_back(etiqueta1)
+		menu4.push_back(etiqueta2)
+		menu4.push_back(etiqueta4)
+		menu4.push_back(etiqueta5)
+
+		menu5.push_back(etiqueta2)
+		menu5.push_back(etiqueta5)
+
+                paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
+		expect(menu1.inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal }).to be_between(paciente1.gastoEnergeticoTotal * 0.9,paciente1.gastoEnergeticoTotal * 1.1).inclusive
+		paciente2 = Paciente.new("Jorge","González Cabrera",66.424,1.9,43,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.12)
+		expect(menu2.inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal }).to be_between(paciente2.gastoEnergeticoTotal * 0.9,paciente2.gastoEnergeticoTotal * 1.1).inclusive
+		paciente3 = Paciente.new("Jorge","González Cabrera",86.81416,1.78,28,true,88.83,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.27)
+		expect(menu3.inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal }).to be_between(paciente3.gastoEnergeticoTotal * 0.9,paciente3.gastoEnergeticoTotal * 1.1).inclusive
+		paciente4 = Paciente.new("Jorge","González Cabrera",86.60512,1.64,15,true,93.5,85,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.54)
+		expect(menu4.inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal }).to be_between(paciente4.gastoEnergeticoTotal * 0.9,paciente4.gastoEnergeticoTotal * 1.1).inclusive
+		paciente5 = Paciente.new("Jorge","González Cabrera",100.710637,1.77,60,false,75.17,102,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.12)
+		expect(menu5.inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal }).to be_between(paciente5.gastoEnergeticoTotal * 0.9,paciente5.gastoEnergeticoTotal * 1.1).inclusive
+        end	
 
 end
