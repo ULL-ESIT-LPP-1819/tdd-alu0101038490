@@ -782,53 +782,59 @@ RSpec.describe "Programación funcional con menús dietéticos" do
 	end
 
 	it "en las que se ordenan correctamente usando el bucle for." do 
-		menusOrdenados = []
-		for i in @menusDieteticos
-			j = 0
-			while j < menusOrdenados.length	&& i.inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal } > menusOrdenados[j].inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal }
-				j += 1
+		puts Benchmark.measure {
+			menusOrdenados = []
+			for i in @menusDieteticos
+				j = 0
+				while j < menusOrdenados.length	&& i.inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal } > menusOrdenados[j].inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal }
+					j += 1
+				end
+				menusOrdenados.insert(j,i)
 			end
-			menusOrdenados.insert(j,i)
-		end
-		expect(menusOrdenados).to eq([@menu7,@menu6,@menu2,@menu10,@menu8,@menu9,@menu5,@menu1,@menu3,@menu4])	
+			expect(menusOrdenados).to eq([@menu7,@menu6,@menu2,@menu10,@menu8,@menu9,@menu5,@menu1,@menu3,@menu4])	
 
-		pacientesOrdenados = []
-		for i in @pacientes
-			j = 0
-			while j < pacientesOrdenados.length && i.gastoEnergeticoTotal > pacientesOrdenados[j].gastoEnergeticoTotal
-				j += 1
+			pacientesOrdenados = []
+			for i in @pacientes
+				j = 0
+				while j < pacientesOrdenados.length && i.gastoEnergeticoTotal > pacientesOrdenados[j].gastoEnergeticoTotal
+					j += 1
+				end
+				pacientesOrdenados.insert(j,i)
 			end
-			pacientesOrdenados.insert(j,i)
-		end
-		expect(pacientesOrdenados).to eq ([@paciente10,@paciente8,@paciente2,@paciente1,@paciente5,@paciente7,@paciente9,@paciente6,@paciente3,@paciente4])	
+			expect(pacientesOrdenados).to eq ([@paciente10,@paciente8,@paciente2,@paciente1,@paciente5,@paciente7,@paciente9,@paciente6,@paciente3,@paciente4])
+		}
 	end
 
 	it "en las que se ordenan correctamente usando el método each." do
-		menusOrdenados = []
-		@menusDieteticos.each do |i|
-			j = 0
-			while j < menusOrdenados.length	&& i.inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal } > menusOrdenados[j].inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal }
-				j += 1
-			end
-			menusOrdenados.insert(j,i)
-		end	
-		expect(menusOrdenados).to eq([@menu7,@menu6,@menu2,@menu10,@menu8,@menu9,@menu5,@menu1,@menu3,@menu4])	
+		puts Benchmark.measure {
+			menusOrdenados = []
+			@menusDieteticos.each do |i|
+				j = 0
+				while j < menusOrdenados.length	&& i.inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal } > menusOrdenados[j].inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal }
+					j += 1
+				end
+				menusOrdenados.insert(j,i)
+			end	
+			expect(menusOrdenados).to eq([@menu7,@menu6,@menu2,@menu10,@menu8,@menu9,@menu5,@menu1,@menu3,@menu4])	
 
-		pacientesOrdenados = []
-		@pacientes.each do |i|
-			j = 0
-			while j < pacientesOrdenados.length && i.gastoEnergeticoTotal > pacientesOrdenados[j].gastoEnergeticoTotal
-				j += 1
-			end
-			pacientesOrdenados.insert(j,i)
-		end	
-		expect(pacientesOrdenados).to eq ([@paciente10,@paciente8,@paciente2,@paciente1,@paciente5,@paciente7,@paciente9,@paciente6,@paciente3,@paciente4])	
+			pacientesOrdenados = []
+			@pacientes.each do |i|
+				j = 0
+				while j < pacientesOrdenados.length && i.gastoEnergeticoTotal > pacientesOrdenados[j].gastoEnergeticoTotal
+					j += 1
+				end
+				pacientesOrdenados.insert(j,i)
+			end	
+			expect(pacientesOrdenados).to eq ([@paciente10,@paciente8,@paciente2,@paciente1,@paciente5,@paciente7,@paciente9,@paciente6,@paciente3,@paciente4])	
+		}
 	end
 
 	it "en las que se ordenan correctamente usando el método sort." do
-		menusOrdenados = @menusDieteticos.sort{ |a,b| a.inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal } <=> b.inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal }}
-		expect(menusOrdenados).to eq([@menu7,@menu6,@menu2,@menu10,@menu8,@menu9,@menu5,@menu1,@menu3,@menu4])	
-		pacientesOrdenados = @pacientes.sort{ |a,b| a.gastoEnergeticoTotal <=> b.gastoEnergeticoTotal }
-		expect(pacientesOrdenados).to eq ([@paciente10,@paciente8,@paciente2,@paciente1,@paciente5,@paciente7,@paciente9,@paciente6,@paciente3,@paciente4])	
+		puts Benchmark.measure {
+			menusOrdenados = @menusDieteticos.sort{ |a,b| a.inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal } <=> b.inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal }}
+			expect(menusOrdenados).to eq([@menu7,@menu6,@menu2,@menu10,@menu8,@menu9,@menu5,@menu1,@menu3,@menu4])	
+			pacientesOrdenados = @pacientes.sort{ |a,b| a.gastoEnergeticoTotal <=> b.gastoEnergeticoTotal }
+			expect(pacientesOrdenados).to eq ([@paciente10,@paciente8,@paciente2,@paciente1,@paciente5,@paciente7,@paciente9,@paciente6,@paciente3,@paciente4])	
+		}
 	end
 end

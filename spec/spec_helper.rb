@@ -1,5 +1,6 @@
 require "bundler/setup"
 require "tdd"
+require 'benchmark'
 require "coveralls"
 Coveralls.wear!
 
