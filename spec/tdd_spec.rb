@@ -686,18 +686,18 @@ end
 
 RSpec.describe "Programación funcional con menús dietéticos" do
 	
-	before :each do
-		menusDieteticos = []
-                menu1 = List.new
-		menu2 = List.new
-		menu3 = List.new
-		menu4 = List.new
-		menu5 = List.new
-		menu6 = List.new
-		menu7 = List.new
-		menu8 = List.new
-		menu9 = List.new
-		menu10 = List.new
+	before :all do
+		@menusDieteticos = []
+                @menu1 = List.new
+		@menu2 = List.new
+		@menu3 = List.new
+		@menu4 = List.new
+		@menu5 = List.new
+		@menu6 = List.new
+		@menu7 = List.new
+		@menu8 = List.new
+		@menu9 = List.new
+		@menu10 = List.new
 
                 etiqueta1 = Etiqueta.new("Magdalena",21.7,2.6,54.9,29.0,4.8,1.15,0.0,0.0,0.0,0.0,0.0,0.0,0.0)
                 etiqueta2 = Etiqueta.new("Galletas",12.0,2.9,62.0,23.0,8.0,0.57,5.6,3.5,19.5,19.5,12.0,0.0,0.0)
@@ -710,64 +710,125 @@ RSpec.describe "Programación funcional con menús dietéticos" do
 		etiqueta9 = Etiqueta.new("Natillas",3.5,2.2,17.4,14.9,3.6,0.3,0.0,0.0,0.0,0.0,0.0,0.6,0.0)
 		etiqueta10 = Etiqueta.new("Jugo",0.0,0.0,8,7.6,0.1,0.0,0.0,0.0,0.0,0.0,0.3,0.012,0.0)
 
-		menu1.push_back(etiqueta1)
-		menu1.push_back(etiqueta2)
+		@menu1.push_back(etiqueta1)
+		@menu1.push_back(etiqueta2)
 
-		menu2.push_back(etiqueta1)
-		menu2.push_back(etiqueta6)
+		@menu2.push_back(etiqueta1)
+		@menu2.push_back(etiqueta6)
 
-		menu3.push_back(etiqueta1)
-		menu3.push_back(etiqueta2)
-		menu3.push_back(etiqueta3)
+		@menu3.push_back(etiqueta1)
+		@menu3.push_back(etiqueta2)
+		@menu3.push_back(etiqueta3)
 
-		menu4.push_back(etiqueta1)
-		menu4.push_back(etiqueta2)
-		menu4.push_back(etiqueta4)
-		menu4.push_back(etiqueta5)
+		@menu4.push_back(etiqueta1)
+		@menu4.push_back(etiqueta2)
+		@menu4.push_back(etiqueta4)
+		@menu4.push_back(etiqueta5)
 
-		menu5.push_back(etiqueta2)
-		menu5.push_back(etiqueta5)
+		@menu5.push_back(etiqueta2)
+		@menu5.push_back(etiqueta5)
 
-		menu6.push_back(etiqueta10)
-		menu6.push_back(etiqueta10)
-		menu6.push_back(etiqueta10)
+		@menu6.push_back(etiqueta10)
+		@menu6.push_back(etiqueta6)
+		@menu6.push_back(etiqueta7)
 		
-		menu7.push_back(etiqueta10)
-		menu7.push_back(etiqueta10)
+		@menu7.push_back(etiqueta8)
+		@menu7.push_back(etiqueta9)
 		
-		menu8.push_back(etiqueta10)
-		menu8.push_back(etiqueta10)
-		menu8.push_back(etiqueta10)
+		@menu8.push_back(etiqueta10)
+		@menu8.push_back(etiqueta2)
+		@menu8.push_back(etiqueta8)
 		
-		menu9.push_back(etiqueta10)
-		menu9.push_back(etiqueta10)
-		menu9.push_back(etiqueta10)
+		@menu9.push_back(etiqueta6)
+		@menu9.push_back(etiqueta2)
+		@menu9.push_back(etiqueta9)
 		
-		menu10.push_back(etiqueta10)
-		menu10.push_back(etiqueta10)
+		@menu10.push_back(etiqueta6)
+		@menu10.push_back(etiqueta3)
 
-		menusDieteticos.push(menu1)		
-		menusDieteticos.push(menu2)		
-		menusDieteticos.push(menu3)		
-		menusDieteticos.push(menu4)		
-		menusDieteticos.push(menu5)		
-		menusDieteticos.push(menu6)		
-		menusDieteticos.push(menu7)		
-		menusDieteticos.push(menu8)		
-		menusDieteticos.push(menu9)		
-		menusDieteticos.push(menu10)
+		@menusDieteticos.push(@menu1)		
+		@menusDieteticos.push(@menu2)		
+		@menusDieteticos.push(@menu3)		
+		@menusDieteticos.push(@menu4)		
+		@menusDieteticos.push(@menu5)		
+		@menusDieteticos.push(@menu6)		
+		@menusDieteticos.push(@menu7)		
+		@menusDieteticos.push(@menu8)		
+		@menusDieteticos.push(@menu9)		
+		@menusDieteticos.push(@menu10)
 
-		pacientes = List.new
-		paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
-                paciente2 = Paciente.new("Jorge","González Cabrera",66.424,1.9,43,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.12)
-                paciente3 = Paciente.new("Jorge","González Cabrera",86.81416,1.78,28,true,88.83,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.27)
-                paciente4 = Paciente.new("Jorge","González Cabrera",86.60512,1.64,15,true,93.5,85,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.54)
-                paciente5 = Paciente.new("Jorge","González Cabrera",100.710637,1.77,60,false,75.17,102,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.12)
-		paciente6 = Paciente.new("Paco","García",72.5,1.82,23,false,92,102,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.54)
-		paciente7 = Paciente.new("Dennis","Westerman",68.93,1.67,38,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.27)
-                paciente8 = Paciente.new("Sofia","Santos Diaz",64.87,1.63,22,false,78.83,80,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.12)
-		paciente9 = Paciente.new("Kevin","Wong",92.3,1.8,53,true,88.5,100,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
-		paciente10 = Paciente.new("Pitufo","Petit",84.71,1.59,69,false,87.32,99,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.12)
+		@pacientes = List.new
+		@paciente1 = Paciente.new("Jorge","González Cabrera",70,1.85,20,true,80,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
+                @paciente2 = Paciente.new("Jorge","González Cabrera",66.424,1.9,43,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.12)
+                @paciente3 = Paciente.new("Jorge","González Cabrera",86.81416,1.78,28,true,88.83,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.27)
+                @paciente4 = Paciente.new("Jorge","González Cabrera",86.60512,1.64,15,true,93.5,85,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.54)
+                @paciente5 = Paciente.new("Jorge","González Cabrera",100.710637,1.77,60,false,75.17,102,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.12)
+		@paciente6 = Paciente.new("Paco","García",72.5,1.82,23,false,92,102,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.54)
+		@paciente7 = Paciente.new("Dennis","Westerman",68.93,1.67,38,true,75.87,90,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.27)
+                @paciente8 = Paciente.new("Sofia","Santos Diaz",64.87,1.63,22,false,78.83,80,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.12)
+		@paciente9 = Paciente.new("Kevin","Wong",92.3,1.8,53,true,88.5,100,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0)
+		@paciente10 = Paciente.new("Pitufo","Petit",84.71,1.59,69,false,87.32,99,[50,48,53],[20,19,17],[84,87,85],[30,34,33],0.12)
+
+		@pacientes.push_back(@paciente1)
+		@pacientes.push_back(@paciente2)
+		@pacientes.push_back(@paciente3)
+		@pacientes.push_back(@paciente4)
+		@pacientes.push_back(@paciente5)
+		@pacientes.push_back(@paciente6)
+		@pacientes.push_back(@paciente7)
+		@pacientes.push_back(@paciente8)
+		@pacientes.push_back(@paciente9)
+		@pacientes.push_back(@paciente10)
 	end
 
+	it "en las que se ordenan correctamente usando el bucle for." do 
+		menusOrdenados = []
+		for i in @menusDieteticos
+			j = 0
+			while j < menusOrdenados.length	&& i.inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal } > menusOrdenados[j].inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal }
+				j += 1
+			end
+			menusOrdenados.insert(j,i)
+		end
+		expect(menusOrdenados).to eq([@menu7,@menu6,@menu2,@menu10,@menu8,@menu9,@menu5,@menu1,@menu3,@menu4])	
+
+		pacientesOrdenados = []
+		for i in @pacientes
+			j = 0
+			while j < pacientesOrdenados.length && i.gastoEnergeticoTotal > pacientesOrdenados[j].gastoEnergeticoTotal
+				j += 1
+			end
+			pacientesOrdenados.insert(j,i)
+		end
+		expect(pacientesOrdenados).to eq ([@paciente10,@paciente8,@paciente2,@paciente1,@paciente5,@paciente7,@paciente9,@paciente6,@paciente3,@paciente4])	
+	end
+
+	it "en las que se ordenan correctamente usando el método each." do
+		menusOrdenados = []
+		@menusDieteticos.each do |i|
+			j = 0
+			while j < menusOrdenados.length	&& i.inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal } > menusOrdenados[j].inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal }
+				j += 1
+			end
+			menusOrdenados.insert(j,i)
+		end	
+		expect(menusOrdenados).to eq([@menu7,@menu6,@menu2,@menu10,@menu8,@menu9,@menu5,@menu1,@menu3,@menu4])	
+
+		pacientesOrdenados = []
+		@pacientes.each do |i|
+			j = 0
+			while j < pacientesOrdenados.length && i.gastoEnergeticoTotal > pacientesOrdenados[j].gastoEnergeticoTotal
+				j += 1
+			end
+			pacientesOrdenados.insert(j,i)
+		end	
+		expect(pacientesOrdenados).to eq ([@paciente10,@paciente8,@paciente2,@paciente1,@paciente5,@paciente7,@paciente9,@paciente6,@paciente3,@paciente4])	
+	end
+
+	it "en las que se ordenan correctamente usando el método sort." do
+		menusOrdenados = @menusDieteticos.sort{ |a,b| a.inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal } <=> b.inject(0) { |sum, n| sum + n.valorEnergeticoEnKcal }}
+		expect(menusOrdenados).to eq([@menu7,@menu6,@menu2,@menu10,@menu8,@menu9,@menu5,@menu1,@menu3,@menu4])	
+		pacientesOrdenados = @pacientes.sort{ |a,b| a.gastoEnergeticoTotal <=> b.gastoEnergeticoTotal }
+		expect(pacientesOrdenados).to eq ([@paciente10,@paciente8,@paciente2,@paciente1,@paciente5,@paciente7,@paciente9,@paciente6,@paciente3,@paciente4])	
+	end
 end
