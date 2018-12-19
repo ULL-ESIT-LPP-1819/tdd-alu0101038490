@@ -805,3 +805,78 @@ RSpec.describe "Programación funcional con menús dietéticos" do
 		}
 	end
 end
+
+RSpec.describe Menu do
+
+	it "se inicializa correctamente." do
+		menu = Menu.new("Lunes") do
+			titulo		"Bajo en calorías"
+			ingesta 	min: 30,
+					max: 35
+			desayuno	descripcion: "Pan de trigo integral",
+					porcion: "1 rodaja",
+					gramos: 100,
+					grasas: 3.3,
+					carbohidratos: 54.0,
+					proteinas: 11.0,
+					fibra: 2.3,
+					sal: 0.06
+			desayuno 	descripcion: "Actimel",
+					porcion: "1 porción",
+					gramos: 100,
+					grasas: 3.4,
+					carbohidratos: 4.4,
+					proteinas: 3.6,
+					fibra: 0.0,
+					sal: 0.05
+			almuerzo	descripcion: "Arroz",
+					porcion: "1 taza",
+					gramos: 100,
+					grasas: 0.9,
+					carbohidratos: 81.6,
+					proteinas: 6.67,
+					fibra: 1.4,
+					sal: 0.04
+			almuerzo 	descripcion: "Lentejas",
+					porcion: "1/2 cucharón",
+					gramos: 100,
+				    	grasas: 0.4,
+				    	carbohidratos: 20.0,
+				   	proteinas: 9.0,
+					fibra: 8.0,
+					sal: 0.02
+		     	almuerzo    	descripcion: "Naranja",
+					porcion: "1 pieza",
+				 	gramos: 100,
+					grasas:  0.12,
+					carbohidratos: 11.75,
+					proteinas: 0.94,
+					fibra: 2.4,
+					sal: 0.0
+		     	cena        	descripcion: "Leche entera hacendado",
+				 	porcion: "1 vaso",
+				 	gramos: 100,
+				 	grasas: 3.6,
+					carbohidratos: 4.6,
+				 	proteinas: 3.1,
+					fibra: 0.0,
+				 	sal: 0.13
+		end
+
+		expect(menu.to_s).to eq(result = "Lunes\tComposición nutricional,Bajo en calorías\n" +
+			"===============================================\n" +
+			"\tgrasas\tcarbohidratos\tproteínas\tfibra\tsal\tvalor\tenergético\n" +
+			"Desayuno\n" +
+			"Pan de trigo integral\t3.3\t54.0\t11.0\t2.3\t0.06\t1247.0\n" +
+			"Actimel\t3.4\t4.4\t3.6\t0.0\t0.05\t263.05\n" +
+			"Almuerzo\n" +
+			"Arroz\t0.9\t81.6\t6.67\t1.4\t0.04\t1546.09\n" +
+			"Lentejas\t0.4\t20.0\t9.0\t8.0\t0.02\t572.3\n" +
+			"Naranja\t0.12\t11.75\t0.94\t2.4\t0.0\t239.37\n" +
+			"Cena\n" +
+			"Leche entera hacendado\t3.6\t4.6\t3.1\t0.0\t0.13\t267.35\n" +
+			"Valor energético total\t4135.16")
+
+	end
+
+end
