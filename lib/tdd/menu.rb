@@ -50,29 +50,29 @@ class Menu
 	end
 
 	def to_s
-		kCalTotal = 0
+		kJulTotal = 0
 		result = "" + @day + "\tComposición nutricional," + @titulo + "\n"
 		result += ("=" * result.length) + "\n" +
 		"\tgrasas\tcarbohidratos\tproteínas\tfibra\tsal\tvalor\tenergético\n" +
 		"Desayuno\n"
 		@desayuno.each do |i|
-			kCal = (37 * i[:grasas]) + (8 * i[:fibra]) + (17 * i[:proteinas]) + (25 * i[:sal]) + (17 * i[:carbohidratos])
-			result += i[:descripcion] + "\t" + i[:grasas].round(2).to_s + "\t" + i[:carbohidratos].round(2).to_s + "\t" + i[:proteinas].round(2).to_s + "\t" + i[:fibra].round(2).to_s + "\t" + i[:sal].round(2).to_s + "\t" + kCal.round(2).to_s + "\n"
-			kCalTotal += kCal
+			kJul = (37 * i[:grasas]) + (8 * i[:fibra]) + (17 * i[:proteinas]) + (25 * i[:sal]) + (17 * i[:carbohidratos])
+			result += i[:descripcion] + "\t" + i[:grasas].round(2).to_s + "\t" + i[:carbohidratos].round(2).to_s + "\t" + i[:proteinas].round(2).to_s + "\t" + i[:fibra].round(2).to_s + "\t" + i[:sal].round(2).to_s + "\t" + kJul.round(2).to_s + "\n"
+			kJulTotal += kJul
 		end
 		result += "Almuerzo\n"
 		@almuerzo.each do |i|
-                        kCal = (37 * i[:grasas]) + (8 * i[:fibra]) + (17 * i[:proteinas]) + (25 * i[:sal]) + (17 * i[:carbohidratos])
-			result += i[:descripcion] + "\t" + i[:grasas].round(2).to_s + "\t" + i[:carbohidratos].round(2).to_s + "\t" + i[:proteinas].round(2).to_s + "\t" + i[:fibra].round(2).to_s + "\t" + i[:sal].round(2).to_s + "\t" + kCal.round(2).to_s + "\n"
-			kCalTotal += kCal
+                        kJul = (37 * i[:grasas]) + (8 * i[:fibra]) + (17 * i[:proteinas]) + (25 * i[:sal]) + (17 * i[:carbohidratos])
+			result += i[:descripcion] + "\t" + i[:grasas].round(2).to_s + "\t" + i[:carbohidratos].round(2).to_s + "\t" + i[:proteinas].round(2).to_s + "\t" + i[:fibra].round(2).to_s + "\t" + i[:sal].round(2).to_s + "\t" + kJul.round(2).to_s + "\n"
+			kJulTotal += kJul
                 end
 		result += "Cena\n"
                 @cena.each do |i|
-                        kCal = (37 * i[:grasas]) + (8 * i[:fibra]) + (17 * i[:proteinas]) + (25 * i[:sal]) + (17 * i[:carbohidratos])
-			result += i[:descripcion] + "\t" + i[:grasas].round(2).to_s + "\t" + i[:carbohidratos].round(2).to_s + "\t" + i[:proteinas].round(2).to_s + "\t" + i[:fibra].round(2).to_s + "\t" + i[:sal].round(2).to_s + "\t" + kCal.round(2).to_s + "\n"
-			kCalTotal += kCal
+                        kJul = (37 * i[:grasas]) + (8 * i[:fibra]) + (17 * i[:proteinas]) + (25 * i[:sal]) + (17 * i[:carbohidratos])
+			result += i[:descripcion] + "\t" + i[:grasas].round(2).to_s + "\t" + i[:carbohidratos].round(2).to_s + "\t" + i[:proteinas].round(2).to_s + "\t" + i[:fibra].round(2).to_s + "\t" + i[:sal].round(2).to_s + "\t" + kJul.round(2).to_s + "\n"
+			kJulTotal += kJul
                 end
-		result += "Valor energético total\t" + kCalTotal.round(2).to_s	
+		result += "Valor energético total\t" + kJulTotal.round(2).to_s	
 
 	end
 
